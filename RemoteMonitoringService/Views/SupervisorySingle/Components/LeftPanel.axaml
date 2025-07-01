@@ -1,0 +1,81 @@
+﻿<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:components="clr-namespace:RemoteMonitoringService.ViewModels.SupervisorySingle.Components"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             x:Class="RemoteMonitoringService.Views.SupervisorySingle.Components.LeftPanel"
+             x:DataType="components:LeftPanelViewModel">
+
+    <DockPanel LastChildFill="True">
+        <Grid RowDefinitions="*,*">
+            <Grid Grid.Row="0" RowDefinitions="*,*,*,*,*">
+                <Border Grid.Row="0">
+                    <StackPanel DockPanel.Dock="Top" Margin="0,24,0,24" HorizontalAlignment="Center">
+                        <Ellipse Width="48" Height="48">
+                            <Ellipse.Fill>
+                                <ImageBrush Source="/Assets/Icon/监控头像.png" Stretch="UniformToFill" />
+                            </Ellipse.Fill>
+                        </Ellipse>
+                        <TextBlock Text="监控管理系统" Foreground="#fff" FontWeight="Bold" FontSize="18" Margin="0,12,0,0" />
+                    </StackPanel>
+                </Border>
+                <!-- 菜单栏 -->
+                <Border Grid.Row="1">
+                    <Grid Name="ManuBorderGrid" RowDefinitions="*,*,*">
+                        <ListBox
+                            Grid.Row="1" ItemsSource="{Binding LeftSideMenuItems}"
+                            SelectedItem="{Binding CurrentLeftSideMenuItem, Mode=TwoWay}"
+                            SelectionMode="Single" BorderThickness="0"
+                            Margin="0" CornerRadius="10">
+                            <ListBox.Styles>
+                                <Style Selector="ListBoxItem:pointerover">
+                                    <Setter Property="Background" Value="#591C1F23" />
+                                    <Setter Property="Foreground" Value="White" />
+                                </Style>
+                                <Style Selector="ListBoxItem:selected">
+                                    <Setter Property="Background" Value="#8E2041AF" />
+                                    <Setter Property="Foreground" Value="White" />
+                                </Style>
+                            </ListBox.Styles>
+                            <ListBox.ItemTemplate>
+                                <DataTemplate>
+                                    <Grid ColumnDefinitions="*,*">
+                                        <PathIcon Foreground="White" Margin="-25,10,0,10" Width="12"
+                                                  Data="{Binding Icon}" />
+                                        <TextBlock Grid.Column="1" Foreground="White" Text="{Binding Title}"
+                                                   Margin="-28,10,0,10" />
+                                        <ToolTip.Tip>
+                                            <TextBlock Text="{Binding  Title}" />
+                                        </ToolTip.Tip>
+                                    </Grid>
+                                </DataTemplate>
+                            </ListBox.ItemTemplate>
+                        </ListBox>
+                    </Grid>
+                </Border>
+            </Grid>
+            <!-- 菜单栏底部管理员头像 --> 
+            <Border Grid.Row="1"
+                    Margin="0,160,0,0">
+                <StackPanel Margin="0,10,0,24" Orientation="Horizontal">
+                    <Grid ColumnDefinitions="*,*">
+                        <Ellipse Grid.Column="0" Margin="5,0,0,0" Width="36" Height="36">
+                            <Ellipse.Fill>
+                                <ImageBrush
+                                    Source="{Binding AvatarResourcesStorage.SystemSettingIcon.SystemSettingIcon}"
+                                    Stretch="UniformToFill" />
+                            </Ellipse.Fill>
+                        </Ellipse>
+                        <Grid Grid.Column="1" RowDefinitions="*,*" Margin="10,0,0,0">
+                            <TextBlock Grid.Row="0" Text="{Binding SystemSetting.AdminName}" Foreground="#fff"
+                                       FontWeight="Bold" FontSize="14" Margin="0,8,0,0" />
+                            <TextBlock Grid.Row="1" Text="{Binding SystemSetting.AdminEmail}" Foreground="#fff"
+                                       FontWeight="Bold" FontSize="9" Margin="0,8,0,0" />
+                        </Grid>
+                    </Grid>
+                </StackPanel>
+            </Border>
+        </Grid>
+    </DockPanel>
+</UserControl>

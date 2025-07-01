@@ -1,0 +1,72 @@
+﻿<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:u="https://irihi.tech/ursa"
+        xmlns:components="clr-namespace:RemoteMonitoringService.ViewModels.SupervisorySingle.Components"
+        mc:Ignorable="d" d:DesignWidth="545" d:DesignHeight="480"
+        Width="545" Height="480"
+        x:Class="RemoteMonitoringService.Views.SupervisoryNoManaged.ChildWindow.AddHostPanel"
+        Title="添加主机" 
+        x:DataType="components:AddHostPanelViewModel"
+        CanResize="False"
+        WindowState="Normal"
+        ExtendClientAreaToDecorationsHint="True"
+        ExtendClientAreaChromeHints="NoChrome">
+    <Border Background="White" CornerRadius="16" Padding="32" Margin="24">
+        <StackPanel>
+            <!-- 标题 -->
+            <TextBlock Text="添加主机"
+                       FontSize="18"
+                       FontWeight="Bold"
+                       Foreground="#222"
+                       Margin="0,0,0,18" />
+            <!-- 主体表单 -->
+            <Grid ColumnDefinitions="*,*" RowDefinitions="Auto,Auto,Auto,Auto,Auto,Auto,Auto,Auto">
+                <!-- 主机名称 -->
+                <TextBlock Grid.Row="0" Grid.Column="0" Text="主机名称" VerticalAlignment="Center" Foreground="#333" />
+                <TextBox Grid.Row="1" Grid.Column="0"
+                         Watermark="请输入主机名称" Height="36" CornerRadius="6"
+                         Text="{Binding HostName}"
+                         Background="#FAFAFB" BorderBrush="#E5E7EB"
+                         BorderThickness="1" FontSize="15" Margin="0,6,10,0" />
+
+                <TextBlock Grid.Row="0" Grid.Column="1"
+                           Text="IP 地址" VerticalAlignment="Center" Foreground="#333" />
+                <TextBox Grid.Row="1" Grid.Column="1"
+                         Watermark="请输入 IP 地址" Height="36"
+                         Text="{Binding IpAddress}"
+                         CornerRadius="6" Background="#FAFAFB" BorderBrush="#E5E7EB"
+                         BorderThickness="1" FontSize="15" Margin="0,6,0,0" />
+
+                <TextBlock Grid.Row="2" Grid.Column="0"
+                           Text="操作系统" VerticalAlignment="Center" Foreground="#333" Margin="0, 15, 0 ,0" />
+                <ComboBox Grid.Row="3" Grid.Column="0" Width="217" Height="36" CornerRadius="6" Background="#FAFAFB"
+                          BorderBrush="#E5E7EB" BorderThickness="1" FontSize="15" Margin="0,6,10,0"
+                          ItemsSource="{Binding OperatingSystemList}"
+                          SelectedItem="{Binding SelectOperatingSystemType}" />
+
+                <TextBlock Grid.Row="2" Grid.Column="1"
+                           Text="主机身份" VerticalAlignment="Center" Foreground="#333" Margin="0, 15, 0 ,0" />
+                <ComboBox Grid.Row="3" Grid.Column="1" Width="217" Height="36" CornerRadius="6" Background="#FAFAFB"
+                          BorderBrush="#E5E7EB" BorderThickness="1" FontSize="15" Margin="0,6,0,0"
+                          ItemsSource="{Binding MachineLinkTypeList}" SelectedItem="{Binding SelectMachineLinkType}" />
+
+                <TextBlock Grid.Row="4" Grid.Column="0"
+                           Text="地址" VerticalAlignment="Center" Foreground="#333" Margin="0, 15, 0 ,0" />
+                <TextBox Grid.Row="5" Grid.Column="0" Watermark="请输入地址" Height="36" CornerRadius="6"
+                         Text="{Binding Address}"
+                         Background="#FAFAFB" BorderBrush="#E5E7EB" BorderThickness="1" FontSize="15" Margin="0,6,10,0" />
+            </Grid>
+            <!-- 按钮区 -->
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Spacing="16" Margin="0,32,0,0">
+                <u:IconButton Content="取消"
+                              Width="90" Height="36"
+                              Command="{Binding CancelAddHostInfoCommand}"/>
+                <Button Content="确认添加"
+                        Width="90" Height="36"
+                        Command="{Binding SaveAddHostInfoCommand}"/>
+            </StackPanel>
+        </StackPanel>
+    </Border>
+</Window>

@@ -1,0 +1,54 @@
+﻿<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:components="clr-namespace:RemoteMonitoringService.ViewModels.SupervisorySingle.Components"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="60"
+             x:Class="RemoteMonitoringService.Views.SupervisorySingle.Components.NavigationPanel"
+             x:DataType="components:NavigationPanelViewModel">
+    <Border Background="#fff" Padding="24,0" VerticalAlignment="Center" Height="60" >
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="200"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="280"/>
+            </Grid.ColumnDefinitions>
+            <!-- 导航菜单 -->
+            <TextBlock Grid.Column="0" Text="{Binding CurrentLeftSideMenuItemTitle}" VerticalAlignment="Center" Foreground="#6B7280" FontSize="16"/>
+            <StackPanel Grid.Column="1" Orientation="Horizontal" VerticalAlignment="Center" Spacing="8">
+                <!-- 通知图标 -->
+                <PathIcon Foreground="#0064FA" Width="16" Height="16"
+                          Data="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm-1-13h2v6h-2zm0 8h2v2h-2z"
+                          VerticalAlignment="Center"/>
+                <!-- 通知消息 -->
+                <TextBlock x:Name="AnimatedText"
+                           Text="{Binding Text}"
+                           Foreground="#0064FA"
+                           FontSize="16"
+                           VerticalAlignment="Center"
+                           Background="Transparent"
+                           Width="300"
+                           RenderTransformOrigin="0.5,0.5"
+                           >
+                    <!-- 滚动效果 -->
+                    <TextBlock.RenderTransform>
+                        <TranslateTransform Y="0">
+                            <TranslateTransform.Transitions>
+                                <Transitions>
+                                    <DoubleTransition Property="Y" Duration="0:0:0.3" Easing="CubicEaseInOut"/>
+                                </Transitions>
+                            </TranslateTransform.Transitions>
+                        </TranslateTransform>
+                    </TextBlock.RenderTransform>
+                </TextBlock>
+                <ToolTip.Tip>
+                    <TextBlock Text="通知" />
+                </ToolTip.Tip>
+                <!-- Ai报告查看 -->
+                <Button Classes="Primary" Theme="{DynamicResource OutlineButton}"
+                        IsVisible="{Binding IsNotificationClickable}"
+                        Click="OnAnimatedTextTapped">点击查看</Button>
+            </StackPanel>
+        </Grid>
+    </Border>
+</UserControl>

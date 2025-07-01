@@ -1,0 +1,22 @@
+<Application xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             x:Class="RemoteMonitoringClient.App"
+             xmlns:semi="https://irihi.tech/semi"
+             xmlns:u-Semi="https://irihi.tech/ursa/themes/semi"
+             xmlns:remoteMonitoringClient="clr-namespace:RemoteMonitoringClient"
+             RequestedThemeVariant="Default">
+             <!-- "Default" ThemeVariant follows system theme variant. "Dark" or "Light" are other available options. -->
+
+    <Application.DataTemplates>
+        <remoteMonitoringClient:ViewLocator/>
+    </Application.DataTemplates>
+  
+    <Application.Styles>
+        <semi:SemiTheme />
+        <semi:DockSemiTheme />
+        <u-Semi:SemiTheme />
+        <StyleInclude Source="avares://Semi.Avalonia.ColorPicker/Index.axaml" />
+        <StyleInclude Source="avares://Semi.Avalonia.DataGrid/Index.axaml" />
+        <StyleInclude Source="avares://Semi.Avalonia.TreeDataGrid/Index.axaml" />
+    </Application.Styles>
+</Application>

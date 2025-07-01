@@ -1,0 +1,99 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+    <PropertyGroup>
+        <OutputType>WinExe</OutputType>
+        <TargetFramework>net8.0</TargetFramework>
+        <Nullable>enable</Nullable>
+        <BuiltInComInteropSupport>true</BuiltInComInteropSupport>
+        <ApplicationManifest>app.manifest</ApplicationManifest>
+        <AvaloniaUseCompiledBindingsByDefault>true</AvaloniaUseCompiledBindingsByDefault>
+        <UserSecretsId>c16709b3-a24b-46ed-b6c9-a11a8aa43f1e</UserSecretsId>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <AvaloniaResource Include="Assets\**"/>
+    </ItemGroup>
+
+    <ItemGroup>
+        <PackageReference Include="Avalonia" Version="11.2.1"/>
+        <PackageReference Include="Avalonia.Desktop" Version="11.2.1"/>
+        <PackageReference Include="Avalonia.Themes.Fluent" Version="11.2.1"/>
+        <PackageReference Include="Avalonia.Fonts.Inter" Version="11.2.1"/>
+        <!--Condition below is needed to remove Avalonia.Diagnostics package from build output in Release configuration.-->
+        <PackageReference Include="Avalonia.Diagnostics" Version="11.2.1">
+            <IncludeAssets Condition="'$(Configuration)' != 'Debug'">None</IncludeAssets>
+            <PrivateAssets Condition="'$(Configuration)' != 'Debug'">All</PrivateAssets>
+        </PackageReference>
+        <PackageReference Include="CommunityToolkit.Mvvm" Version="8.2.1"/>
+        <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="9.0.2" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <UpToDateCheckInput Remove="Assets\avalonia-logo.ico" />
+      <UpToDateCheckInput Remove="Views\MainWindow.axaml" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\RemoteMonitoring.Core\RemoteMonitoring.Core.csproj" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Compile Update="Views\SupervisorySingle\Components\HomepagePanel.PrivateAction.axamle.cs">
+        <DependentUpon>HomepagePanel.axaml</DependentUpon>
+      </Compile>
+      <Compile Update="ViewModels\SupervisorySingle\Components\AddHostPanelViewModel.Private.cs">
+        <DependentUpon>AddHostPanelViewModel.cs</DependentUpon>
+      </Compile>
+      <Compile Update="ViewModels\SupervisorySingle\Components\AvatarSelectPanelViewModel.Private.cs">
+        <DependentUpon>AvatarSelectPanelViewModel.cs</DependentUpon>
+      </Compile>
+      <Compile Update="ViewModels\SupervisorySingle\Components\ContentPanelViewModel.PrivateAction.cs">
+        <DependentUpon>ContentPanelViewModel.cs</DependentUpon>
+      </Compile>
+      <Compile Update="ViewModels\SupervisorySingle\Components\HomepagePanelViewModel.AiAction.cs">
+        <DependentUpon>HomepagePanelViewModel.cs</DependentUpon>
+      </Compile>
+      <Compile Update="ViewModels\SupervisorySingle\Components\HomepagePanelViewModel.PrivateAction.cs">
+        <DependentUpon>HomepagePanelViewModel.cs</DependentUpon>
+      </Compile>
+      <Compile Update="ViewModels\SupervisorySingle\Components\LeftPanelViewModel.PrivateAction.cs">
+        <DependentUpon>LeftPanelViewModel.cs</DependentUpon>
+      </Compile>
+      <Compile Update="ViewModels\SupervisorySingle\Components\MachineActivityModel.cs">
+        <DependentUpon>LeftPanelViewModel.cs</DependentUpon>
+      </Compile>
+      <Compile Update="ViewModels\SupervisorySingle\Components\NavigationPanelViewModel.PrivateAction.cs">
+        <DependentUpon>NavigationPanelViewModel.cs</DependentUpon>
+      </Compile>
+      <Compile Update="ViewModels\SupervisorySingle\Components\SystemSettingsPanelViewModel.Private.cs">
+        <DependentUpon>SystemSettingsPanelViewModel.cs</DependentUpon>
+      </Compile>
+      <Compile Update="ViewModels\MainWindowViewModel.NetworkAction.cs">
+        <DependentUpon>MainWindowViewModel.cs</DependentUpon>
+      </Compile>
+      <Compile Update="ViewModels\MainWindowViewModel.PriveAction.cs">
+        <DependentUpon>MainWindowViewModel.cs</DependentUpon>
+      </Compile>
+    </ItemGroup>
+
+    <ItemGroup>
+        <None Update="Assets\Icon\avalonia-logo.ico">
+            <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+        </None>
+
+        <None Update="Assets\Icon\光之战士.jfif">
+            <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+        </None>
+
+        <None Update="Assets\Icon\监控头像.png">
+            <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+        </None>
+
+        <None Update="Assets\Icon\拉拉菲尔族.jpg">
+            <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+        </None>
+
+        <None Update="SecureStorage\SystemSetting\SystemSetting_settings.json">
+            <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+        </None>
+    </ItemGroup>
+</Project>

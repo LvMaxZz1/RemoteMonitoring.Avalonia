@@ -1,0 +1,79 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>net8.0</TargetFramework>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <Nullable>enable</Nullable>
+        <UserSecretsId>9c853343-4675-475b-8a5e-6e9e13f32f33</UserSecretsId>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <PackageReference Include="CommunityToolkit.Mvvm" Version="8.2.1" />
+        <PackageReference Include="Dock.Model.Avalonia" Version="11.2.0" />
+        <PackageReference Include="Dock.Model.Mvvm" Version="11.2.0" />
+        <PackageReference Include="Dock.Model.ReactiveUI" Version="11.2.0" />
+        <PackageReference Include="DotNetty.Codecs" Version="0.7.6" />
+        <PackageReference Include="DotNetty.Handlers" Version="0.7.6" />
+        <PackageReference Include="DotNetty.Transport" Version="0.7.6" />
+        <PackageReference Include="LibreHardwareMonitorLib" Version="0.9.4" />
+        <PackageReference Include="LibreHardwareMonitorLibCore" Version="1.0.3" />
+        <PackageReference Include="Mediator.Net" Version="4.8.0" />
+        <PackageReference Include="Mediator.Net.MicrosoftDependencyInjection" Version="4.8.0" />
+        <PackageReference Include="Microsoft.Extensions.Configuration.Binder" Version="9.0.3" />
+        <PackageReference Include="Microsoft.Extensions.Configuration.EnvironmentVariables" Version="2.2.0" />
+        <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="9.0.2" />
+        <PackageReference Include="Microsoft.Extensions.DependencyModel" Version="9.0.0" />
+        <PackageReference Include="Microsoft.Extensions.Caching.Memory" Version="9.0.2" />
+        <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="9.0.2" />
+        <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
+        <PackageReference Include="Prism.Avalonia" Version="9.0.401.11110-pre" />
+        <PackageReference Include="Serilog" Version="4.2.0" />
+        <PackageReference Include="Serilog.Enrichers.ClientInfo" Version="2.1.2" />
+        <PackageReference Include="Serilog.Enrichers.CorrelationId" Version="3.0.1" />
+        <PackageReference Include="Serilog.Extensions.Logging" Version="9.0.0" />
+        <PackageReference Include="Serilog.Sinks.Console" Version="6.0.0" />
+        <PackageReference Include="Serilog.Sinks.Seq" Version="9.0.0" />
+        <PackageReference Include="System.IO.Hashing" Version="8.0.0" />
+        <PackageReference Include="ReactiveUI" Version="20.1.63" />
+        <PackageReference Include="Refit" Version="6.3.2" />
+        <PackageReference Include="Refit.HttpClientFactory" Version="6.3.2" />
+        <PackageReference Include="Refit.Newtonsoft.Json" Version="6.3.2" />
+        <PackageReference Include="Microsoft.Extensions.Configuration.UserSecrets" Version="9.0.0-rc.2.24473.5" />
+        <PackageReference Include="System.Text.Encoding.CodePages" Version="9.0.6" />
+        <PackageReference Include="Semi.Avalonia" Version="11.2.1.5" />
+        <PackageReference Include="Semi.Avalonia.ColorPicker" Version="11.2.1.5" />
+        <PackageReference Include="Semi.Avalonia.DataGrid" Version="11.2.1.5" />
+        <PackageReference Include="Semi.Avalonia.Dock" Version="11.2.0-beta1" />
+        <PackageReference Include="Semi.Avalonia.TreeDataGrid" Version="11.0.10.1" />
+        <PackageReference Include="Irihi.Avalonia.Shared" Version="0.2.3" />
+        <PackageReference Include="Irihi.Avalonia.Shared.Contracts" Version="0.2.3" />
+        <PackageReference Include="Irihi.Ursa" Version="1.9.0" />
+        <PackageReference Include="Irihi.Ursa.PrismExtension" Version="9.0.1" />
+        <PackageReference Include="Irihi.Ursa.ReactiveUIExtension" Version="1.0.1" />
+        <PackageReference Include="Irihi.Ursa.Themes.Semi" Version="1.9.0" />
+    </ItemGroup>
+
+    <ItemGroup>
+        <Reference Include="Avalonia.Base">
+            <HintPath>..\SocketAvaloniaClient\bin\Debug\net8.0\Avalonia.Base.dll</HintPath>
+        </Reference>
+        <Reference Include="Avalonia.Controls">
+            <HintPath>..\SocketAvaloniaClient\bin\Debug\net8.0\Avalonia.Controls.dll</HintPath>
+        </Reference>
+    </ItemGroup>
+
+    <ItemGroup>
+        <None Update="Services\Networks\service_network_setting.json">
+            <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+        </None>
+        <None Update="Services\Networks\client-network-setting.json">
+            <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+        </None>
+        <None Update="Services\Refits\refit-setting.json">
+            <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+        </None>
+        <None Update="Services\Networks\console-network-setting.json">
+            <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+        </None>
+    </ItemGroup>
+</Project>

@@ -1,0 +1,8 @@
+{
+  "RefitSetting": {
+    "DeepSeekAi":{
+      "BaseUrl":"https://api.deepseek.com",
+      "ApiKey":""
+    }
+  }
+}

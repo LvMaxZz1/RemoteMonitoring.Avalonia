@@ -1,0 +1,130 @@
+﻿<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:u="https://irihi.tech/ursa"
+             xmlns:components="clr-namespace:RemoteMonitoringService.ViewModels.SupervisorySingle.Components"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="600"
+             x:Class="RemoteMonitoringService.Views.SupervisorySingle.Components.HomepagePanel"
+             x:DataType="components:HomepagePanelViewModel"
+             Background="#F5F6FA">
+    <Grid Name="GlobalGrid" RowDefinitions="Auto,Auto,Auto,*,*" Margin="20">
+        <Grid Grid.Row="1" Height="100" Margin="0,0,0,20" Name="StatsGrid">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition />
+            </Grid.ColumnDefinitions>
+            <Grid.RenderTransform>
+                <TranslateTransform X="0">
+                    <TranslateTransform.Transitions>
+                        <Transitions>
+                            <DoubleTransition Property="X" Duration="0:0:0.3" Easing="CubicEaseInOut"/>
+                        </Transitions>
+                    </TranslateTransform.Transitions>
+                </TranslateTransform>
+            </Grid.RenderTransform>
+            <Border Background="White" CornerRadius="10" Padding="20" Margin="0,0,10,0" Height="100" Name="TotalHostsBorder">
+                <StackPanel>
+                    <TextBlock Text="主机总数" FontSize="14" Foreground="#666"/>
+                    <TextBlock Text="{Binding TotalHosts}" FontSize="36" FontWeight="Bold" Foreground="#2563EB" Margin="0,5,0,0"/>
+                </StackPanel>
+            </Border>
+            <Border Grid.Column="1" Background="White" CornerRadius="10" Padding="20" Margin="10,0,10,0" Height="100" Name="OnlineHostsBorder">
+                <Border.RenderTransform>
+                    <TranslateTransform X="-120">
+                        <TranslateTransform.Transitions>
+                            <Transitions>
+                                <DoubleTransition Property="X" Duration="0:0:0.3" Easing="CubicEaseInOut"/>
+                            </Transitions>
+                        </TranslateTransform.Transitions>
+                    </TranslateTransform>
+                </Border.RenderTransform>
+                <StackPanel>
+                    <TextBlock Text="在线主机" FontSize="14" Foreground="#666"/>
+                    <TextBlock Text="{Binding OnlineHosts}" FontSize="36" FontWeight="Bold" Foreground="#22C55E" Margin="0,5,0,0"/>
+                </StackPanel>
+            </Border>
+            <Border Grid.Column="2" Background="White" CornerRadius="10" Padding="20" Margin="10,0,10,0" Height="100" Name="OfflineHostsBorder">
+                <Border.RenderTransform>
+                    <TranslateTransform X="-240">
+                        <TranslateTransform.Transitions>
+                            <Transitions>
+                                <DoubleTransition Property="X" Duration="0:0:0.3" Easing="CubicEaseInOut"/>
+                            </Transitions>
+                        </TranslateTransform.Transitions>
+                    </TranslateTransform>
+                </Border.RenderTransform>
+                <StackPanel>
+                    <TextBlock Text="离线主机" FontSize="14" Foreground="#666"/>
+                    <TextBlock Text="{Binding OfflineHosts}" FontSize="36" FontWeight="Bold" Foreground="#EF4444" Margin="0,5,0,0"/>
+                </StackPanel>
+            </Border>
+            <Border Grid.Column="3" Background="White" CornerRadius="10" Padding="20" Margin="10,0,0,0" Height="100" Name="AlertCountBorder">
+                <Border.RenderTransform>
+                    <TranslateTransform X="-360">
+                        <TranslateTransform.Transitions>
+                            <Transitions>
+                                <DoubleTransition Property="X" Duration="0:0:0.3" Easing="CubicEaseInOut"/>
+                            </Transitions>
+                        </TranslateTransform.Transitions>
+                    </TranslateTransform>
+                </Border.RenderTransform>
+                <StackPanel>
+                    <TextBlock Text="告警数量" FontSize="14" Foreground="#666"/>
+                    <TextBlock Text="{Binding AlertCount}" FontSize="36" FontWeight="Bold" Foreground="#F59E0B" Margin="0,5,0,0"/>
+                </StackPanel>
+            </Border>
+            <Button Grid.Column="4" Name="ToggleButton" 
+                    Content="展开" 
+                    HorizontalAlignment="Right" 
+                    VerticalAlignment="Top"
+                    Margin="0,10,10,0"
+                    Click="ToggleButton_Click"
+                    Background="#F3F4F6" 
+                    Foreground="#374151" 
+                    CornerRadius="6" 
+                    Height="30" 
+                    Padding="15,0"/>
+        </Grid>
+        <Border Grid.Row="2" Background="White" CornerRadius="10" Padding="20" Margin="0,0,0,20">
+            <StackPanel Orientation="Horizontal" Spacing="15">
+                <Button Content="查看所有主机" Background="#F3F4F6" Foreground="#374151" 
+                        CornerRadius="6" Height="40" Padding="15,0"
+                        Command="{Binding ViewAllHostsCommand}"/>
+                <u:IconButton Content="生成报告" Background="#F3F4F6" Foreground="#374151"
+                              CornerRadius="6" Height="40" Padding="15,0"
+                              Command="{Binding GenerateReportingCommand}"
+                IsLoading="{Binding CanLogin}" />
+            </StackPanel>
+        </Border>
+        <Border Height="250" Margin="0, 50,0 ,0" Grid.Row="3" Background="White" CornerRadius="8" Padding="15">
+            <Grid RowDefinitions="Auto,*">
+                <TextBlock Text="近期活动" FontSize="18" FontWeight="SemiBold" Margin="0,0,0,10"/>
+                <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Auto">
+                    <ListBox ItemsSource="{Binding RecentActivities}" 
+                            MaxHeight="200"
+                            Background="Transparent"
+                            BorderThickness="0">
+                        <ListBox.ItemTemplate>
+                            <DataTemplate>
+                                <StackPanel Orientation="Horizontal" Spacing="10" Margin="0,5">
+                                    <PathIcon Data="{Binding IconData}" Width="16" Height="16"/>
+                                    <TextBlock Text="{Binding Description}" Foreground="#333"/>
+                                    <TextBlock Text="{Binding TimeAgo}" Foreground="#999" HorizontalAlignment="Right"/>
+                                </StackPanel>
+                            </DataTemplate>
+                        </ListBox.ItemTemplate>
+                    </ListBox>
+                </ScrollViewer>
+            </Grid>
+        </Border>
+        
+        <!-- 底部 -->
+        <Border Grid.Row="4" Background="#F0F2F5" Padding="10" VerticalAlignment="Bottom">
+            <TextBlock Text="© 2025 RemoteMonitoringService. All rights reserved." HorizontalAlignment="Center" Foreground="#999"/>
+        </Border>
+    </Grid>
+</UserControl> 

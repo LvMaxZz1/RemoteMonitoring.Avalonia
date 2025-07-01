@@ -1,0 +1,14 @@
+﻿{
+  "ConsoleNetworkSetting": {
+    "IpAddress": "192.168.183.1",
+    "Port": 8080,
+    "PreferDirect": false,
+    "NHeapArena": 0,
+    "NDirectArena": 0,
+    "PageSize": 8192,
+    "TinyCacheSize": 11,
+    "MaxOrder": 512,
+    "SmallCacheSize": 256,
+    "NormalCacheSize": 64
+  }
+}

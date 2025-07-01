@@ -1,0 +1,87 @@
+﻿<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:components="clr-namespace:RemoteMonitoringConsole.ViewModels.SupervisorySingle.Components"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             x:Class="RemoteMonitoringConsole.Views.SupervisorySingle.Components.EquipmentInfoPanelView"
+             x:DataType="components:EquipmentInfoPanelViewModel">
+    <Border Margin="0,20,12,0" Classes="Shadow" Theme="{StaticResource CardBorder}">
+        <StackPanel Spacing="10">
+            <TextBlock FontSize="16" FontWeight="Bold"
+                       TextAlignment="Center"
+                       Text="本机设备信息" />
+            <StackPanel Spacing="5">
+                <Grid ColumnDefinitions="*, *">
+                    <Grid.RowDefinitions>
+                    </Grid.RowDefinitions>
+                    <TextBlock Text="操作系统" HorizontalAlignment="Left" />
+                    <TextBlock Grid.Column="1"
+                               Text="{Binding OperatingSystem}"
+                               HorizontalAlignment="Right" />
+                </Grid>
+                <Grid ColumnDefinitions="*, *">
+                    <Grid.RowDefinitions>
+                    </Grid.RowDefinitions>
+                    <TextBlock Text="Cpu负载(%)" HorizontalAlignment="Left" />
+                    <TextBlock Grid.Column="1"
+                               Text="{Binding CpuLoad, StringFormat={}{0}%}"
+                               HorizontalAlignment="Right" />
+                </Grid>
+                <Grid ColumnDefinitions="*, *">
+                    <Grid.RowDefinitions>
+                    </Grid.RowDefinitions>
+                    <TextBlock HorizontalAlignment="Left" Text="内存(GB)" />
+                    <TextBlock Grid.Column="1"
+                               Text="{Binding MemoryUsedGb, 
+                                            StringFormat={}{0}GB}"
+                               HorizontalAlignment="Right" />
+                </Grid>
+                <Grid ColumnDefinitions="*, *">
+                    <Grid.RowDefinitions>
+                    </Grid.RowDefinitions>
+                    <TextBlock HorizontalAlignment="Left" Text="内存(%)" />
+                    <TextBlock Grid.Column="1"
+                               Text="{Binding MemoryTotalGb, 
+                                            StringFormat={}{0}%}"
+                               HorizontalAlignment="Right" />
+                </Grid>
+
+                <Grid ColumnDefinitions="*, *">
+                    <Grid.RowDefinitions>
+                    </Grid.RowDefinitions>
+                    <TextBlock HorizontalAlignment="Left" Text="Gpu负载(%)" />
+                    <TextBlock Grid.Column="1"
+                               Text="{Binding GpuLoad, 
+                                            StringFormat={}{0}%}"
+                               HorizontalAlignment="Right" />
+                </Grid>
+
+                <!-- <Grid ColumnDefinitions="*, *"> -->
+                <!--     <Grid.RowDefinitions> -->
+                <!--     </Grid.RowDefinitions> -->
+                <!--     <TextBlock HorizontalAlignment="Left" Text="磁盘(GB)"/> -->
+                <!--     <TextBlock Grid.Column="1"> -->
+                <!--         <Run Text="磁盘: "/> -->
+                <!--         <Run Text="{Binding DiskUsedGb}"/> -->
+                <!--         <Run Text="GB / "/> -->
+                <!--         <Run Text="{Binding DiskTotalGb}"/> -->
+                <!--         <Run Text="GB"/> -->
+                <!--     </TextBlock> -->
+                <!-- </Grid> -->
+                <!-- <Grid ColumnDefinitions="*, *"> -->
+                <!--     <TextBlock HorizontalAlignment="Left" Text="风扇转速(RPM)"/> -->
+                <!--     <TextBlock Grid.Column="1"  -->
+                <!--                Text="{Binding FanRpm,  -->
+                <!--                StringFormat={}{0}RPM}" HorizontalAlignment="Right"/> -->
+                <!-- </Grid> -->
+                <!-- <Grid ColumnDefinitions="*, *"> -->
+                <!--     <TextBlock HorizontalAlignment="Left" Text="当前功耗(W)"/> -->
+                <!--     <TextBlock Grid.Column="1"  -->
+                <!--                Text="{Binding PowerUsageWatt,  -->
+                <!--                StringFormat={}{0}W}" HorizontalAlignment="Right"/> -->
+                <!-- </Grid> -->
+            </StackPanel>
+        </StackPanel>
+    </Border>
+</UserControl>

@@ -1,0 +1,16 @@
+﻿<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d" d:DesignWidth="350" d:DesignHeight="160"
+        x:Class="RemoteMonitoringClient.Views.PromptWindow"
+        Title="本程序必须以管理员权限运行才能启动"
+        WindowStartupLocation="CenterOwner"
+        CanResize="False"
+        ShowInTaskbar="False"
+        SizeToContent="WidthAndHeight">
+        <StackPanel Margin="24" Spacing="20">
+                <TextBlock Text="本程序必须以管理员权限运行才能启动。 权限不足!" TextAlignment="Center" FontSize="16" TextWrapping="Wrap" />
+                <Button Content="确定" Width="80" HorizontalAlignment="Center" Click="OkButton_Click"/>
+        </StackPanel>
+</Window>

@@ -1,0 +1,86 @@
+﻿<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:dragDrop="clr-namespace:RemoteMonitoring.Core.Base.Behavior.DragDrop;assembly=RemoteMonitoring.Core"
+             xmlns:components="clr-namespace:RemoteMonitoringConsole.ViewModels.SupervisorySingle.Components"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             x:Class="RemoteMonitoringConsole.Views.SupervisorySingle.Components.MonitoringBoardPanelView"
+             x:DataType="components:MonitoringBoardPanelViewModel">
+    <Border
+        Margin="0 20"
+        BorderBrush="#E0E0E0"
+        BorderThickness="2"
+        CornerRadius="5">
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="50" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="50" />
+            </Grid.RowDefinitions>
+
+            <TextBlock Grid.Row="0"
+                       FontSize="16"
+                       FontWeight="Bold"
+                       Margin="10"
+                       Text="监控区域"
+                       TextAlignment="Left"
+                       HorizontalAlignment="Left"
+                       VerticalAlignment="Center" />
+
+            <Border Grid.Row="1"
+                    Classes="Shadow" Theme="{StaticResource CardBorder}"
+                    Background="#FAFAFA"
+                    CornerRadius="3"
+                    Margin="20"
+                    dragDrop:FileDragDropBehavior.IsEnabled="True">
+                <StackPanel VerticalAlignment="Center">
+                    <PathIcon Width="50" Height="50"
+                              Data="{StaticResource SemiIconUserCardVideo}"
+                              IsVisible="{Binding !IsControlStart}" />
+                    <Image IsVisible="{Binding IsControlStart}"
+                           Source="{Binding ControlImage}"
+                           Focusable="True"
+                           IsHitTestVisible="True">
+                    </Image>
+                </StackPanel>
+            </Border>
+            <StackPanel Grid.Row="2"
+                        Orientation="Horizontal"
+                        HorizontalAlignment="Right"
+                        VerticalAlignment="Bottom"
+                        Margin="10">
+                <Button
+                    Name="MonitorStart" Margin="5"
+                    Content="开始监控" Classes="Primary"
+                    Theme="{DynamicResource SolidButton}"
+                    Click="MonitorStart_OnClick" />
+                <Button Margin="5"
+                        Content="锁屏" Classes="Primary"
+                        Theme="{DynamicResource SolidButton}"
+                        Command="{Binding SendLockScreenCommand}" />
+                <Button Margin="5"
+                        Content="注销" Classes="Primary"
+                        Theme="{DynamicResource SolidButton}"
+                        Command="{Binding SendLogoutCommand}" />
+                <Button Margin="5"
+                        Content="重启" Classes="Primary"
+                        Theme="{DynamicResource SolidButton}"
+                        Command="{Binding SendRestartCommand}" />
+                <Button Margin="5"
+                        Content="关机" Classes="Primary"
+                        Theme="{DynamicResource SolidButton}"
+                        Command="{Binding SendShutdownCommand}" />
+                <Button Margin="5"
+                        Content="关闭应用" Classes="Primary"
+                        Theme="{DynamicResource SolidButton}"
+                        Command="{Binding SendShutdownApplicationCommand}" />
+                <Button Margin="5"
+                        Content="全屏显示" Classes="Primary"
+                        Theme="{DynamicResource SolidButton}"
+                        IsEnabled="{Binding IsFullScreen}"
+                        Command="{Binding FullScreenCommand}" />
+            </StackPanel>
+        </Grid>
+    </Border>
+</UserControl>

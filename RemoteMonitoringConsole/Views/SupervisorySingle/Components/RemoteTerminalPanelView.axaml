@@ -1,0 +1,49 @@
+﻿<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:u="https://irihi.tech/ursa"
+             xmlns:components="clr-namespace:RemoteMonitoringConsole.ViewModels.SupervisorySingle.Components"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             x:Class="RemoteMonitoringConsole.Views.SupervisorySingle.Components.RemoteTerminalPanelView"
+             x:DataType="components:RemoteTerminalPanelViewModel">
+    <Grid>
+        <Border
+            Grid.Row="0"
+            Margin="0,20,12,20" Classes="Shadow"
+            Theme="{StaticResource CardBorder}">
+            <Grid RowDefinitions="Auto,*,Auto">
+                <!-- 顶部栏 -->
+                <Grid Height="40" Background="#FF4B6179" ColumnDefinitions="*,Auto,Auto">
+                    <TextBlock Text="远程终端" Foreground="White" FontWeight="Bold"
+                               VerticalAlignment="Center"
+                               Margin="16,0,0,0" />
+                </Grid>
+                <!-- 终端内容区 -->
+                <Border Grid.Row="1" Background="#E102070d" CornerRadius="0,0,10,10" Margin="0"
+                        Padding="10">
+                    <ScrollViewer x:Name="TerminalScrollViewer"
+                                  VerticalScrollBarVisibility="Visible"
+                                  HorizontalScrollBarVisibility="Visible">
+                        <TextBlock x:Name="TerminalOutputTextBlock" Text="{Binding TerminalOutput}"
+                                   Foreground="#00FF00"
+                                   FontFamily="Consolas"
+                                   FontSize="15"
+                                   TextWrapping="Wrap" />
+                    </ScrollViewer>
+                </Border>
+                <!-- 命令输入区 -->
+                <StackPanel Grid.Row="2" Orientation="Horizontal" Margin="10,8,10,10">
+                    <TextBox Width="270" FontFamily="Consolas" FontSize="15"
+                             Classes="clearButton"
+                             Background="#47DFE0E0"
+                             Text="{Binding TerminalInput, Mode=TwoWay}"
+                             KeyUp="TerminalInputBox_KeyUp" />
+                    <u:IconButton Content="发送" Margin="8,0,0,0"
+                                  Classes="Secondary" Theme="{DynamicResource SolidButton}"
+                                  Command="{Binding SendTerminalCommand}" />
+                </StackPanel>
+            </Grid>
+        </Border>
+    </Grid>
+</UserControl>

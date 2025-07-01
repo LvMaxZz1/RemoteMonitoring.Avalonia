@@ -1,0 +1,13 @@
+{
+  "ServiceNetworkSetting": {
+    "Port": 8080,
+    "PreferDirect": true,
+    "NHeapArena": 0,
+    "NDirectArena": 5,
+    "PageSize": 8192,
+    "TinyCacheSize": 512,
+    "MaxOrder": 11,
+    "SmallCacheSize": 256,
+    "NormalCacheSize": 64
+  }
+}

@@ -1,0 +1,89 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:u="https://irihi.tech/ursa"
+        xmlns:components="clr-namespace:RemoteMonitoringService.ViewModels.SupervisorySingle.Components"
+        mc:Ignorable="d"
+        d:DesignWidth="580"
+        d:DesignHeight="450"
+        Width="580"
+        Height="450"
+        x:Class="RemoteMonitoringService.Views.SupervisoryNoManaged.ChildWindow.AvatarSelectPanel"
+        x:DataType="components:AvatarSelectPanelViewModel"
+        WindowStartupLocation="CenterOwner"
+        CanResize="False"
+        Background="#F5F6FA"
+        CornerRadius="16"
+        Title="选择头像"
+        ExtendClientAreaToDecorationsHint="True"
+        ExtendClientAreaChromeHints="NoChrome"
+        PointerPressed="OnTitleBarPointerPressed">
+    
+    <StackPanel Margin="24" Spacing="18">
+        <!-- 标题 -->
+        <TextBlock Text="选择头像"
+                   FontSize="20"
+                   FontWeight="Bold"
+                   Foreground="#222"
+                   HorizontalAlignment="Left"
+                   Margin="0,0,0,8"/>
+        <Border Background="#fff" CornerRadius="10" Padding="0,18,0,18" >
+            <StackPanel>
+                <TextBlock Text="当前头像"
+                           FontSize="15"
+                           Foreground="#888"
+                           HorizontalAlignment="Center"/>
+                <Ellipse Width="90" Height="90" Margin="0,10,0,18" HorizontalAlignment="Center" >
+                    <Ellipse.Fill>
+                        <ImageBrush Source="{Binding AvatarResourcesStorage.SelectSystemSettingIcon.SystemSettingIcon}" Stretch="UniformToFill"/>
+                    </Ellipse.Fill>
+                </Ellipse>
+                <!-- 头像选择区 -->
+                <ListBox ItemsSource="{Binding AvatarResourcesStorage.SystemSettingIcons}"
+                         SelectedItem="{Binding AvatarResourcesStorage.SelectSystemSettingIcon, Mode=TwoWay}"
+                         BorderThickness="0"
+                         Background="Transparent"
+                         HorizontalAlignment="Center"
+                         Margin="0,0,0,0">
+                    <ListBox.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <UniformGrid Columns="4"/>
+                        </ItemsPanelTemplate>
+                    </ListBox.ItemsPanel>
+                    <ListBox.ItemTemplate>
+                        <DataTemplate>
+                            <Border BorderThickness="2"
+                                    CornerRadius="32"
+                                    Margin="8,8,8,0"
+                                    Width="64" Height="64"
+                                    Background="Transparent">
+                                <Ellipse Width="60" Height="60">
+                                    <Ellipse.Fill>
+                                        <ImageBrush Source="{Binding SystemSettingIcon}" Stretch="UniformToFill"/>
+                                    </Ellipse.Fill>
+                                </Ellipse>
+                            </Border>
+                        </DataTemplate>
+                    </ListBox.ItemTemplate>
+                    <ListBox.Styles>
+                        <Style Selector="ListBoxItem:selected">
+                            <Setter Property="BorderBrush" Value="#2563EB"/>
+                        </Style>
+                        <Style Selector="ListBoxItem">
+                            <Setter Property="BorderBrush" Value="Transparent"/>
+                        </Style>
+                    </ListBox.Styles>
+                </ListBox>
+            </StackPanel>
+        </Border>
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Spacing="16" Margin="0,18,0,0">
+            <u:IconButton Content="取消"
+                          Width="90" Height="36"
+                          Command="{Binding CancelModifyCommand}" />
+            <u:IconButton Content="确定"
+                          Width="90" Height="36"
+                          Command="{Binding SaveModifyCommand}" />
+        </StackPanel>
+    </StackPanel>
+</Window>

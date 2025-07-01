@@ -1,0 +1,30 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:viewModels="clr-namespace:RemoteMonitoringService.ViewModels"
+        x:Class="RemoteMonitoringService.Views.MainWindow"
+        mc:Ignorable="d" d:DesignWidth="966" d:DesignHeight="600"
+        Width="966" Height="600"
+        x:DataType="viewModels:MainWindowViewModel"
+        Icon="/Assets/Icon/avalonia-logo.ico"
+        Title="监控服务端"
+        CanResize="False"
+        WindowStartupLocation="CenterScreen">
+
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="160"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <Grid Grid.Column="0" Background="#DE192026" RowDefinitions="Auto,*,Auto,*">
+            <UserControl Content="{Binding LeftPanel}"/>
+        </Grid>
+        <Grid Grid.Column="1"
+               Background = "#E6E8EA"
+               RowDefinitions ="Auto,*">
+            <UserControl Grid.Row="0" Content="{Binding NavigationPanel}"/>
+            <UserControl Grid.Row="1" Content="{Binding InfoControl}"/>
+        </Grid>
+    </Grid>
+</Window>
