@@ -40,7 +40,7 @@ public partial class HomepagePanelViewModel
                     Tag = OnLine,
                     Values = [OnlineHosts],
                     Name = OnLine,
-                    Fill = new SolidColorPaint(new SKColor(34, 197, 94)),
+                    Fill = new SolidColorPaint(new SKColor(0, 166, 81)),
                     DataLabelsPosition = PolarLabelsPosition.Outer,
                     IsHoverable = true,
                     IsVisible = OnlineHosts > 0
@@ -50,7 +50,7 @@ public partial class HomepagePanelViewModel
                     Tag = OffLine,
                     Values = [OfflineHosts],
                     Name = OffLine,
-                    Fill = new SolidColorPaint(new SKColor(239, 68, 68)),
+                    Fill = new SolidColorPaint(new SKColor(154, 23, 31)),
                     DataLabelsPosition = PolarLabelsPosition.Outer,
                     IsHoverable = true,
                     IsVisible = OfflineHosts > 0

@@ -10,8 +10,42 @@
              x:DataType="components:HomepagePanelViewModel"
              Background="#F5F6FA">
     <Grid Name="GlobalGrid" RowDefinitions="Auto,Auto,Auto,*,*" Margin="20">
-        <avalonia:PieChart Series="{Binding SeriesCollection}" Width="200" Height="100"/>
-        <Border Grid.Row="2" Background="White" CornerRadius="10" Padding="20" Margin="0,0,0,20">
+        <Grid >
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/> 
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+            <avalonia:PieChart Series="{Binding SeriesCollection}" Width="200" Height="100"/>
+            <StackPanel Grid.Column="1" Spacing="8"
+                        Width="350" Margin="200,0,0,0">
+                <Grid ColumnDefinitions="*, *">
+                    <Grid.RowDefinitions>
+                    </Grid.RowDefinitions>
+                    <TextBlock Text="在线主机" HorizontalAlignment="Left" />
+                    <TextBlock Grid.Column="1"
+                               Text="{Binding OnlineHosts, StringFormat={}{0}台}"
+                               HorizontalAlignment="Right" />
+                </Grid>
+                <Grid ColumnDefinitions="*, *">
+                    <Grid.RowDefinitions>
+                    </Grid.RowDefinitions>
+                    <TextBlock Text="离线主机" HorizontalAlignment="Left" />
+                    <TextBlock Grid.Column="1"
+                               Text="{Binding OfflineHosts, StringFormat={}{0}台}"
+                               HorizontalAlignment="Right" />
+                </Grid>
+                <Grid ColumnDefinitions="*, *">
+                    <Grid.RowDefinitions>
+                    </Grid.RowDefinitions>
+                    <TextBlock HorizontalAlignment="Left" Text="警告主机" />
+                    <TextBlock Grid.Column="1"
+                               Text="{Binding AlertCount, 
+                                            StringFormat={}{0}台}"
+                               HorizontalAlignment="Right" />
+                </Grid>
+            </StackPanel>
+        </Grid>
+        <Border Grid.Row="1" Background="White" CornerRadius="10" Padding="20" Margin="0,0,0,20">
             <StackPanel Orientation="Horizontal" Spacing="15">
                 <Button Content="查看所有主机" Background="#F3F4F6" Foreground="#374151" 
                         CornerRadius="6" Height="40" Padding="15,0"
