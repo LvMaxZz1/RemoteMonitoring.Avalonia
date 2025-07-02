@@ -6,6 +6,7 @@
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
              x:Class="RemoteMonitoringService.Views.SupervisorySingle.Components.ContentPanel"
              x:DataType="components:ContentPanelViewModel"
+             xmlns:consoles="clr-namespace:RemoteMonitoringService.Views.SupervisorySingle.Components"
              Background="#F5F6FA">
     
     <Border Margin="20"

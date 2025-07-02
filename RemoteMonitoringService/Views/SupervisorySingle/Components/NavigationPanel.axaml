@@ -6,13 +6,8 @@
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="60"
              x:Class="RemoteMonitoringService.Views.SupervisorySingle.Components.NavigationPanel"
              x:DataType="components:NavigationPanelViewModel">
-    <Border Background="#fff" Padding="24,0" VerticalAlignment="Center" Height="60" >
-        <Grid>
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="200"/>
-                <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="280"/>
-            </Grid.ColumnDefinitions>
+    <Border Background="#FFF2F2F2" Padding="24,0" VerticalAlignment="Center" Height="60" >
+        <Grid ColumnDefinitions="200,*,280">
             <!-- 导航菜单 -->
             <TextBlock Grid.Column="0" Text="{Binding CurrentLeftSideMenuItemTitle}" VerticalAlignment="Center" Foreground="#6B7280" FontSize="16"/>
             <StackPanel Grid.Column="1" Orientation="Horizontal" VerticalAlignment="Center" Spacing="8">

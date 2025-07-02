@@ -1,14 +1,74 @@
 ﻿using System;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
+using System.Linq;
 using System.Threading.Tasks;
 using System.Timers;
 using Avalonia.Threading;
+using LiveChartsCore.Measure;
+using LiveChartsCore.SkiaSharpView;
+using LiveChartsCore.SkiaSharpView.Painting;
 using RemoteMonitoringService.Base.MessageBusModels;
+using SkiaSharp;
 
 namespace RemoteMonitoringService.ViewModels.SupervisorySingle.Components;
 
 public partial class HomepagePanelViewModel
 {
+    partial void OnOnlineHostsChanged(int value) => UpdateSeries();
+    partial void OnOfflineHostsChanged(int value) => UpdateSeries();
+    partial void OnAlertCountChanged(int value) => UpdateSeries();
+
+    private void UpdateSeries()
+    {
+        SeriesCollection.Clear();
+        if (OnlineHosts == 0 && OfflineHosts == 0 && AlertCount == 0)
+        {
+            SeriesCollection.Add(new PieSeries<double>
+            {
+                Values = [1],
+                Name = "No Data",
+                Fill = new SolidColorPaint(new SKColor(220, 220, 220)),
+                IsVisible = true
+            });
+        }
+        else
+        {
+            SeriesCollection.AddRange([
+                new PieSeries<double>
+                {
+                    Tag = OnLine,
+                    Values = [OnlineHosts],
+                    Name = OnLine,
+                    Fill = new SolidColorPaint(new SKColor(34, 197, 94)),
+                    DataLabelsPosition = PolarLabelsPosition.Outer,
+                    IsHoverable = true,
+                    IsVisible = OnlineHosts > 0
+                },
+                new PieSeries<double>
+                {
+                    Tag = OffLine,
+                    Values = [OfflineHosts],
+                    Name = OffLine,
+                    Fill = new SolidColorPaint(new SKColor(239, 68, 68)),
+                    DataLabelsPosition = PolarLabelsPosition.Outer,
+                    IsHoverable = true,
+                    IsVisible = OfflineHosts > 0
+                },
+                new PieSeries<double>
+                {
+                    Tag = AlertLine,
+                    Values = [AlertCount],
+                    Name = AlertLine,
+                    Fill = new SolidColorPaint(new SKColor(251, 191, 36)),
+                    DataLabelsPosition = PolarLabelsPosition.Outer,
+                    IsHoverable = true,
+                    IsVisible = AlertCount > 0
+                }
+            ]);
+        }
+    }
+
     private void UpdateTimeAgo(object? sender, ElapsedEventArgs e)
     {
         foreach (var activity in RecentActivities)
@@ -35,7 +95,7 @@ public partial class HomepagePanelViewModel
             }
         });
     }
-    
+
     private void MachineOfflineLog(MachineExitBusModel busModel)
     {
         Dispatcher.UIThread.Invoke(() =>
@@ -58,7 +118,7 @@ public partial class HomepagePanelViewModel
             }
         });
     }
-    
+
     [Description("跳转到主机列表")]
     private async Task ViewAllHostsShow()
     {

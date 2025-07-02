@@ -13,20 +13,17 @@
         Title="Ai智能分析">
     <Border Padding="30" Background="#F5F6FA" CornerRadius="12" Margin="0,24,0,0">
         <StackPanel Spacing="20">
-            <!-- 顶部标题 -->
             <Grid Margin="0,0,0,10">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*" />
                     <ColumnDefinition Width="Auto" />
                 </Grid.ColumnDefinitions>
-                <!-- 标题左对齐 -->
                 <TextBlock Text="AI 智能分析报告"
                            FontSize="22"
                            FontWeight="Bold"
                            Foreground="#2563EB"
                            HorizontalAlignment="Left"
                            Grid.Column="0"/>
-                <!-- 时间右对齐，绑定你的时间属性 -->
                 <TextBlock Text="{Binding LastReport.DateTimeNow}" 
                            FontSize="14"
                            Foreground="#999"
@@ -34,7 +31,6 @@
                            VerticalAlignment="Bottom"
                            Grid.Column="1"/>
             </Grid>
-            <!-- 数据卡片区 -->
             <Border Padding="30" Background="White" CornerRadius="12">
                 <StackPanel Margin="10" Spacing="10"
                             HorizontalAlignment="Left"

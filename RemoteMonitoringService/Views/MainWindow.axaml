@@ -3,6 +3,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:viewModels="clr-namespace:RemoteMonitoringService.ViewModels"
+        xmlns:components="clr-namespace:RemoteMonitoringService.Views.SupervisorySingle.Components"
         x:Class="RemoteMonitoringService.Views.MainWindow"
         mc:Ignorable="d" d:DesignWidth="966" d:DesignHeight="600"
         Width="966" Height="600"
@@ -17,11 +18,11 @@
             <ColumnDefinition Width="160"/>
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
-        <Grid Grid.Column="0" Background="#DE192026" RowDefinitions="Auto,*,Auto,*">
-            <UserControl Content="{Binding LeftPanel}"/>
+        <Grid Grid.Column="0"  RowDefinitions="Auto,*,Auto,*">
+            <components:LeftPanelBackgroundStylePanel Grid.RowSpan="2" IsHitTestVisible="False" />
+            <UserControl Grid.Row="0" Content="{Binding LeftPanel}"/>
         </Grid>
         <Grid Grid.Column="1"
-               Background = "#E6E8EA"
                RowDefinitions ="Auto,*">
             <UserControl Grid.Row="0" Content="{Binding NavigationPanel}"/>
             <UserControl Grid.Row="1" Content="{Binding InfoControl}"/>
