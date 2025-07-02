@@ -10,7 +10,7 @@
              x:DataType="components:HomepagePanelViewModel"
              Background="#F5F6FA">
     <Grid Name="GlobalGrid" RowDefinitions="Auto,Auto,Auto,*,*" Margin="20">
-        <avalonia:PieChart Series="{Binding SeriesCollection}" Width="200" Height="200"/>
+        <avalonia:PieChart Series="{Binding SeriesCollection}" Width="200" Height="100"/>
         <Border Grid.Row="2" Background="White" CornerRadius="10" Padding="20" Margin="0,0,0,20">
             <StackPanel Orientation="Horizontal" Spacing="15">
                 <Button Content="查看所有主机" Background="#F3F4F6" Foreground="#374151" 
