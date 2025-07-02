@@ -60,7 +60,7 @@ public partial class HomepagePanelViewModel
                     Tag = AlertLine,
                     Values = [AlertCount],
                     Name = AlertLine,
-                    Fill = new SolidColorPaint(new SKColor(251, 191, 36)),
+                    Fill = new SolidColorPaint(new SKColor(251, 251, 199)),
                     DataLabelsPosition = PolarLabelsPosition.Outer,
                     IsHoverable = true,
                     IsVisible = AlertCount > 0

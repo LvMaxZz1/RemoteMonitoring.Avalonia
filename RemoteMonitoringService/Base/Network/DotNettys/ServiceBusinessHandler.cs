@@ -19,7 +19,7 @@ using RemoteMonitoringService.ViewModels.SupervisorySingle.Components;
 
 namespace RemoteMonitoringService.Base.Network.DotNettys;
 
-[AsType(LifetimeEnum.Transient)]
+[AsType(LifetimeEnum.SingleInstance)]
 public partial class ServiceBusinessHandler(
     IMediator mediator,
     IServiceNetworkService networkService,

@@ -73,6 +73,9 @@
       <Compile Update="ViewModels\MainWindowViewModel.PriveAction.cs">
         <DependentUpon>MainWindowViewModel.cs</DependentUpon>
       </Compile>
+      <Compile Update="Base\Network\DotNettys\ServiceBusinessHandler.PrivceAction.cs">
+        <DependentUpon>ServiceBusinessHandler.cs</DependentUpon>
+      </Compile>
     </ItemGroup>
 
     <ItemGroup>
