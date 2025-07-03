@@ -19,7 +19,8 @@
                     </Grid.RowDefinitions>
                     <TextBlock 
                         Foreground="{DynamicResource SukiLowText}"
-                        Text="操作系统" HorizontalAlignment="Left" />
+                        Text="操作系统" HorizontalAlignment="Left" 
+                        FontWeight="DemiBold"/>
                     <TextBlock Grid.Column="1"
                                Foreground="{DynamicResource SukiLowText}"
                                Text="{Binding OperatingSystem}"
@@ -30,6 +31,7 @@
                     </Grid.RowDefinitions>
                     <TextBlock HorizontalAlignment="Left" 
                                Foreground="{DynamicResource SukiLowText}"
+                               FontWeight="DemiBold"
                                Text="内存(GB)" />
                     <TextBlock Grid.Column="1"
                                Foreground="{DynamicResource SukiLowText}"
