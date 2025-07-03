@@ -32,9 +32,10 @@ public partial class MainWindow : BaseWindow<MainWindowViewModel>
 
     protected override async void OnClosed(EventArgs e)
     {
+        IsClose = true;
         if (DataContext is MainWindowViewModel controlMainWindowViewModel)
         {
-            await controlMainWindowViewModel.MonitoringBoardPanelView.ViewModel.MonitorControlAsync();
+            await controlMainWindowViewModel.MonitoringBoardPanelView.ViewModel.MonitorControlAsync(IsClose);
         }
         await ViewModel.StopCommand();
         ViewModel.CloseApplication();

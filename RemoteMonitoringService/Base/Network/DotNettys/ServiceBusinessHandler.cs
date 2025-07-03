@@ -68,7 +68,7 @@ public partial class ServiceBusinessHandler(
         }
         catch (Exception e)
         {
-            throw;
+           //
         }
     }
 
@@ -172,6 +172,10 @@ public partial class ServiceBusinessHandler(
             if (channelCloseState.IsClose)
             {
                 channelCloseState.IsClose = false;
+                if (networkService.AllChannels.TryGetValue(machineKey.MachineId, out _))
+                {
+                    networkService.AllChannels.TryRemove(machineKey.MachineId, out _);
+                }
                 await base.CloseAsync(context); 
             }
         }

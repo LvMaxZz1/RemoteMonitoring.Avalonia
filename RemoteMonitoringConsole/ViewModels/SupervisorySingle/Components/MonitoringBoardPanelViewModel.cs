@@ -62,7 +62,7 @@ public partial class MonitoringBoardPanelViewModel : ViewModelBase, IActivatable
     }
     
     [Description("控制")]
-    public async Task<bool> MonitorControlAsync()
+    public async Task<bool> MonitorControlAsync(bool isApplicationClose = false)
     {
         switch (Power)
         {
@@ -72,9 +72,12 @@ public partial class MonitoringBoardPanelViewModel : ViewModelBase, IActivatable
                 await SendCommandToClient(CommandType.ObtainScreen, new ScreenInfo(Power, 0, new Keybd(), new Mouse()));
                 break;
             case Power.Off:
-                Power = Power.On;
-                IsControlStart = true;
-                await SendCommandToClient(CommandType.ObtainScreen, new ScreenInfo(Power, 50, new Keybd(), new Mouse()));
+                if (!isApplicationClose)
+                {
+                    Power = Power.On;
+                    IsControlStart = true;
+                    await SendCommandToClient(CommandType.ObtainScreen, new ScreenInfo(Power, 50, new Keybd(), new Mouse()));
+                }
                 break;
         }
         return IsControlStart;

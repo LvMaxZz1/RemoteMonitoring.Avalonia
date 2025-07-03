@@ -7,6 +7,7 @@ using Avalonia.Threading;
 using RemoteMonitoring.Core.Base;
 using RemoteMonitoring.Core.DependencyInjection.Base;
 using RemoteMonitoringService.ViewModels;
+using SukiUI.Enums;
 
 namespace RemoteMonitoringService.Views;
 

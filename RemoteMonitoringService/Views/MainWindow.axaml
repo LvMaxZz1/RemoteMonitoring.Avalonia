@@ -13,7 +13,8 @@
                    Title="监控服务端"
                    CanResize="False"
                    CanMaximize="False"
-                   WindowStartupLocation="CenterScreen">
+                   WindowStartupLocation="CenterScreen"
+                   BackgroundStyle="Bubble">
 
     <Grid>
         <Grid.ColumnDefinitions>

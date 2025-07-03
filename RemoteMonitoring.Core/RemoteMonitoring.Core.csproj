@@ -36,6 +36,7 @@
         <PackageReference Include="Serilog.Sinks.Console" Version="6.0.0" />
         <PackageReference Include="Serilog.Sinks.Seq" Version="9.0.0" />
         <PackageReference Include="SukiUI" Version="6.0.0" />
+        <PackageReference Include="SukiUI.Dock" Version="6.0.0-rc" />
         <PackageReference Include="System.IO.Hashing" Version="8.0.0" />
         <PackageReference Include="ReactiveUI" Version="20.1.63" />
         <PackageReference Include="Refit" Version="6.3.2" />
