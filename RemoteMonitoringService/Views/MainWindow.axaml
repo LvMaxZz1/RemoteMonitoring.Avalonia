@@ -1,17 +1,19 @@
-<Window xmlns="https://github.com/avaloniaui"
-        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:viewModels="clr-namespace:RemoteMonitoringService.ViewModels"
-        xmlns:components="clr-namespace:RemoteMonitoringService.Views.SupervisorySingle.Components"
-        x:Class="RemoteMonitoringService.Views.MainWindow"
-        mc:Ignorable="d" d:DesignWidth="966" d:DesignHeight="600"
-        Width="966" Height="600"
-        x:DataType="viewModels:MainWindowViewModel"
-        Icon="/Assets/Icon/avalonia-logo.ico"
-        Title="监控服务端"
-        CanResize="False"
-        WindowStartupLocation="CenterScreen">
+<suki:SukiWindow xmlns="https://github.com/avaloniaui"
+                   xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                   xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+                   xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                   xmlns:viewModels="clr-namespace:RemoteMonitoringService.ViewModels"
+                   xmlns:components="clr-namespace:RemoteMonitoringService.Views.SupervisorySingle.Components"
+                   xmlns:suki="https://github.com/kikipoulet/SukiUI"
+                   x:Class="RemoteMonitoringService.Views.MainWindow"
+                   mc:Ignorable="d" d:DesignWidth="966" d:DesignHeight="640"
+                   Width="966" Height="640"
+                   x:DataType="viewModels:MainWindowViewModel"
+                   Icon="/Assets/Icon/avalonia-logo.ico"
+                   Title="监控服务端"
+                   CanResize="False"
+                   CanMaximize="False"
+                   WindowStartupLocation="CenterScreen">
 
     <Grid>
         <Grid.ColumnDefinitions>
@@ -28,4 +30,4 @@
             <UserControl Grid.Row="1" Content="{Binding InfoControl}"/>
         </Grid>
     </Grid>
-</Window>
+</suki:SukiWindow>

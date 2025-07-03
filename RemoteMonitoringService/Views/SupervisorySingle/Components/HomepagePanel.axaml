@@ -5,58 +5,80 @@
              xmlns:u="https://irihi.tech/ursa"
              xmlns:components="clr-namespace:RemoteMonitoringService.ViewModels.SupervisorySingle.Components"
              xmlns:avalonia="clr-namespace:LiveChartsCore.SkiaSharpView.Avalonia;assembly=LiveChartsCore.SkiaSharpView.Avalonia"
+             xmlns:suki="https://github.com/kikipoulet/SukiUI"
+             xmlns:icon="clr-namespace:Material.Icons.Avalonia;assembly=Material.Icons.Avalonia"
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="600"
              x:Class="RemoteMonitoringService.Views.SupervisorySingle.Components.HomepagePanel"
              x:DataType="components:HomepagePanelViewModel"
              Background="#F5F6FA">
-    <Grid Name="GlobalGrid" RowDefinitions="Auto,Auto,Auto,*,*" Margin="20">
-        <Grid >
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="Auto"/> 
-                <ColumnDefinition Width="Auto"/>
-            </Grid.ColumnDefinitions>
-            <avalonia:PieChart Series="{Binding SeriesCollection}" Width="200" Height="100"/>
-            <StackPanel Grid.Column="1" Spacing="8"
-                        Width="350" Margin="200,0,0,0">
-                <Grid ColumnDefinitions="*, *">
-                    <Grid.RowDefinitions>
-                    </Grid.RowDefinitions>
-                    <TextBlock Text="在线主机" HorizontalAlignment="Left" />
-                    <TextBlock Grid.Column="1"
-                               Text="{Binding OnlineHosts, StringFormat={}{0}台}"
-                               HorizontalAlignment="Right" />
-                </Grid>
-                <Grid ColumnDefinitions="*, *">
-                    <Grid.RowDefinitions>
-                    </Grid.RowDefinitions>
-                    <TextBlock Text="离线主机" HorizontalAlignment="Left" />
-                    <TextBlock Grid.Column="1"
-                               Text="{Binding OfflineHosts, StringFormat={}{0}台}"
-                               HorizontalAlignment="Right" />
-                </Grid>
-                <Grid ColumnDefinitions="*, *">
-                    <Grid.RowDefinitions>
-                    </Grid.RowDefinitions>
-                    <TextBlock HorizontalAlignment="Left" Text="警告主机" />
-                    <TextBlock Grid.Column="1"
-                               Text="{Binding AlertCount, 
-                                            StringFormat={}{0}台}"
-                               HorizontalAlignment="Right" />
-                </Grid>
-            </StackPanel>
-        </Grid>
+    <Grid Name="GlobalGrid" RowDefinitions="Auto,Auto,Auto,*" Margin="20">
+         <suki:GlassCard Width="450"  Height="180" Margin="0,-15,0,10" Classes="Card">
+                    <StackPanel>
+                        <Grid Margin="0,18,0,0">
+                            <TextBlock HorizontalAlignment="Left"
+                                       FontSize="13"
+                                       FontWeight="DemiBold"
+                                       Foreground="{DynamicResource SukiLowText}"
+                                       Text="在线主机" />
+                            <StackPanel HorizontalAlignment="Right" Orientation="Horizontal">
+                                <TextBlock FontSize="13"
+                                           Foreground="Green"
+                                           Text="{Binding OnLineHostPercentage, StringFormat={}{0}%}" />
+                                <icon:MaterialIcon Margin="5,0,0,0"
+                                                   Foreground="Green"
+                                                   Kind="ArrowUp" />
+                            </StackPanel>
+                        </Grid>
+                        <ProgressBar Margin="0,1,0,0" Value="{Binding OnLineHostPercentage}" />
+                        <Grid Margin="0,13,0,0">
+                            <TextBlock HorizontalAlignment="Left"
+                                       FontSize="13"
+                                       FontWeight="DemiBold"
+                                       Foreground="{DynamicResource SukiLowText}"
+                                       Text="离线主机" />
+                            <StackPanel HorizontalAlignment="Right" Orientation="Horizontal">
+                                <TextBlock FontSize="13"
+                                           Foreground="Red"
+                                           Text="{Binding OffLineHostPercentage, StringFormat={}{0}%}"/>
+                                <icon:MaterialIcon Margin="5,0,0,0"
+                                                   Foreground="Red"
+                                                   Kind="ArrowDown" />
+                            </StackPanel>
+                        </Grid>
+                        <ProgressBar Margin="0,1,0,0" Value="{Binding OffLineHostPercentage}" />
+
+                        <Grid Margin="0,13,0,0">
+                            <TextBlock HorizontalAlignment="Left"
+                                       FontSize="13"
+                                       FontWeight="DemiBold"
+                                       Foreground="{DynamicResource SukiLowText}"
+                                       Text="警告主机" />
+                            <StackPanel HorizontalAlignment="Right" Orientation="Horizontal">
+                                <TextBlock FontSize="13"
+                                           Foreground="Green"
+                                           Text="{Binding AlertLineHostPercentage, StringFormat={}{0}%}"/>
+                                <icon:MaterialIcon Margin="5,0,0,0"
+                                                   Foreground="#fbfbc7"
+                                                   Kind="ArrowUp" />
+                            </StackPanel>
+                        </Grid>
+                        <ProgressBar Margin="0,1,0,0" Value="{Binding AlertLineHostPercentage}" />
+                    </StackPanel>
+                </suki:GlassCard>
         <Border Grid.Row="1" Background="White" CornerRadius="10" Padding="20" Margin="0,0,0,20">
             <StackPanel Orientation="Horizontal" Spacing="15">
-                <Button Content="查看所有主机" Background="#F3F4F6" Foreground="#374151" 
-                        CornerRadius="6" Height="40" Padding="15,0"
-                        Command="{Binding ViewAllHostsCommand}"/>
-                <u:IconButton Content="生成报告" Background="#F3F4F6" Foreground="#374151"
+                <u:IconButton Content="查看所有主机" Background="#FF4440D3" Foreground="#FFFFFFFF" 
+                              CornerRadius="6" Height="40" Padding="15,0"
+                              Command="{Binding ViewAllHostsCommand}"
+                              Icon="{StaticResource SemiIconDisc}"/>
+                <u:IconButton Content="生成报告" Background="#ff008242" Foreground="#FFFFFFFF"
                               CornerRadius="6" Height="40" Padding="15,0"
                               Command="{Binding GenerateReportingCommand}"
-                IsLoading="{Binding CanLogin}" />
+                              IsLoading="{Binding CanLogin}"
+                              Icon="{StaticResource SemiIconArticle}"/>
             </StackPanel>
         </Border>
-        <Border Height="250" Margin="0, 50,0 ,0" Grid.Row="3" Background="White" CornerRadius="8" Padding="15">
+        <Border Height="250" Margin="0, 0,0 ,0" Grid.Row="3" Background="White" CornerRadius="8" Padding="15">
             <Grid RowDefinitions="Auto,*">
                 <TextBlock Text="近期活动" FontSize="18" FontWeight="SemiBold" Margin="0,0,0,10"/>
                 <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Auto">
@@ -76,11 +98,6 @@
                     </ListBox>
                 </ScrollViewer>
             </Grid>
-        </Border>
-        
-        <!-- 底部 -->
-        <Border Grid.Row="4" Background="#F0F2F5" Padding="10" VerticalAlignment="Bottom">
-            <TextBlock Text="© 2025 RemoteMonitoringService. All rights reserved." HorizontalAlignment="Center" Foreground="#999"/>
         </Border>
     </Grid>
 </UserControl> 

@@ -1,8 +1,9 @@
 ﻿using Avalonia.Controls;
+using SukiUI.Controls;
 
 namespace RemoteMonitoring.Core.Base;
 
-public class BaseWindow : Window, IGraphicalInterface
+public class BaseWindow : SukiWindow, IGraphicalInterface
 {
     public Guid Id { get; set; } = Guid.NewGuid();
 

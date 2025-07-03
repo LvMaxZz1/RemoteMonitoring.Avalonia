@@ -15,17 +15,32 @@ public partial class HomepagePanelViewModel : ViewModelBase, IActivatableViewMod
 {
     #region observableProperty
 
-    [ObservableProperty] private int _totalHosts = 10;
+    [ObservableProperty] 
+    private int _totalHosts = 10;
 
-    [ObservableProperty] private int _onlineHosts;
+    [ObservableProperty] 
+    private int _onlineHosts;
 
-    [ObservableProperty] private int _offlineHosts;
+    [ObservableProperty] 
+    private int _offlineHosts;
 
-    [ObservableProperty] private int _alertCount;
+    [ObservableProperty] 
+    private int _alertCount;
 
-    [ObservableProperty] private AiReply _aiReply;
+    [ObservableProperty] 
+    private AiReply _aiReply;
 
-    [ObservableProperty] private bool _canLogin;
+    [ObservableProperty] 
+    private bool _canLogin;
+
+    [ObservableProperty]
+    private double _onLineHostPercentage;
+    
+    [ObservableProperty]
+    private double _offLineHostPercentage;
+    
+    [ObservableProperty]
+    private double _alertLineHostPercentage;
 
     #endregion observableProperty
 
@@ -71,6 +86,9 @@ public partial class HomepagePanelViewModel : ViewModelBase, IActivatableViewMod
         GenerateReportingCommand = new AsyncRelayCommand(GenerateReportingCommandAAsync);
 
         UpdateSeries();
+        UpdateOnLineHostPercentage();
+        UpdateOffLineHostPercentage();
+        UpdateAlertLineHostPercentage();
 
         MessageBusUtil.ListenMessage<MachineOnlineBusModel>(RxApp.MainThreadScheduler, MachineOnlineOnlineLog,
             MessageBusContract.MessageBusService);

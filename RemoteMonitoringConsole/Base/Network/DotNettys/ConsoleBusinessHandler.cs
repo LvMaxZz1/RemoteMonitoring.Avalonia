@@ -25,7 +25,7 @@ using RemoteMonitoringConsole.Views;
 
 namespace RemoteMonitoringConsole.Base.Network.DotNettys;
 
-[AsType(LifetimeEnum.SingleInstance)]
+[AsType(LifetimeEnum.Transient)]
 public partial class ConsoleBusinessHandler(
     IMediator mediator,
     IConsoleNetworkService consoleNetworkService) : SimpleChannelInboundHandler<NetworkVerify>

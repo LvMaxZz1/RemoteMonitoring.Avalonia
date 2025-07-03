@@ -76,6 +76,9 @@
       <Compile Update="Base\Network\DotNettys\ServiceBusinessHandler.PrivceAction.cs">
         <DependentUpon>ServiceBusinessHandler.cs</DependentUpon>
       </Compile>
+      <Compile Update="Views\SupervisorySingle\Components\LeftPanelBackgroundStylePanel.axaml.cs">
+        <DependentUpon>BackgroundStylePanel.axaml</DependentUpon>
+      </Compile>
     </ItemGroup>
 
     <ItemGroup>

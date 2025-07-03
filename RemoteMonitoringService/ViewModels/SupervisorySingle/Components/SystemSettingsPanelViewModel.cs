@@ -12,12 +12,15 @@ public partial class SystemSettingsPanelViewModel : ViewModelBase, IActivatableV
 {
     #region observableProperty
 
-    [ObservableProperty] 
+    [ObservableProperty]
+    [NotifyPropertyChangedFor(nameof(SaveModifyCommand))]
     private string _adminName;
     
+    [NotifyPropertyChangedFor(nameof(SaveModifyCommand))]
     [ObservableProperty] 
     private string _adminEmail;
     
+    [NotifyPropertyChangedFor(nameof(SaveModifyCommand))]
     [ObservableProperty] 
     private string _adminPhone;
     
@@ -64,7 +67,7 @@ public partial class SystemSettingsPanelViewModel : ViewModelBase, IActivatableV
         _navigationService = navigationService;
         AvatarResourcesStorage = avatarResourcesStorage;
         CancelModifyCommand = new AsyncRelayCommand(CancelModifyCommandAsync);
-        SaveModifyCommand = new AsyncRelayCommand(SaveModifyCommandAsync);
+        SaveModifyCommand = new AsyncRelayCommand(SaveModifyCommandAsync, CanSaveModifyCommand);
 
         ShutdownApplicationCommand = new RelayCommand(() => _navigationService.CloseApplication());
     }

@@ -1,16 +1,18 @@
-﻿<Window xmlns="https://github.com/avaloniaui"
-        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:components="clr-namespace:RemoteMonitoringService.ViewModels.SupervisorySingle.Components"
-        mc:Ignorable="d" d:DesignWidth="916" d:DesignHeight="646"
-        Width="916" Height="646"
-        x:Class="RemoteMonitoringService.Views.SupervisoryNoManaged.ChildWindow.ReportDisplayPanel"
-        Background="#F5F6FA"
-        x:DataType="components:NavigationPanelViewModel"
-        CanResize = "False"
-        WindowStartupLocation="CenterOwner"
-        Title="Ai智能分析">
+﻿<suki:SukiWindow xmlns="https://github.com/avaloniaui"
+            xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+            xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+            xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+            xmlns:components="clr-namespace:RemoteMonitoringService.ViewModels.SupervisorySingle.Components"
+            xmlns:suki="https://github.com/kikipoulet/SukiUI"
+            mc:Ignorable="d" d:DesignWidth="916" d:DesignHeight="646"
+            Width="916" Height="646"
+            x:Class="RemoteMonitoringService.Views.SupervisoryNoManaged.ChildWindow.ReportDisplayPanel"
+            Background="#F5F6FA"
+            x:DataType="components:NavigationPanelViewModel"
+            CanResize = "False"
+            CanMaximize="False"
+            WindowStartupLocation="CenterOwner"
+            Title="Ai智能分析">
     <Border Padding="30" Background="#F5F6FA" CornerRadius="12" Margin="0,24,0,0">
         <StackPanel Spacing="20">
             <Grid Margin="0,0,0,10">
@@ -141,4 +143,4 @@
             </Border>
         </StackPanel>
     </Border>
-</Window>
+</suki:SukiWindow>

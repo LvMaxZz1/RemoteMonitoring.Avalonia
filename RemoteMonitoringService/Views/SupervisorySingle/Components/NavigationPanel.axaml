@@ -19,7 +19,7 @@
                 <TextBlock x:Name="AnimatedText"
                            Text="{Binding Text}"
                            Foreground="#0064FA"
-                           FontSize="16"
+                           FontSize="15"
                            VerticalAlignment="Center"
                            Background="Transparent"
                            Width="300"

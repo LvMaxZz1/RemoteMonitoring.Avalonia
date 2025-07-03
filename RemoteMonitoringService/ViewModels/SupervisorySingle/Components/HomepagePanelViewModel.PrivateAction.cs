@@ -15,10 +15,39 @@ namespace RemoteMonitoringService.ViewModels.SupervisorySingle.Components;
 
 public partial class HomepagePanelViewModel
 {
-    partial void OnOnlineHostsChanged(int value) => UpdateSeries();
-    partial void OnOfflineHostsChanged(int value) => UpdateSeries();
-    partial void OnAlertCountChanged(int value) => UpdateSeries();
+    partial void OnOnlineHostsChanged(int value)
+    {
+        UpdateOnLineHostPercentage();
+        UpdateSeries();
+    }
 
+    partial void OnOfflineHostsChanged(int value)
+    {
+        UpdateOffLineHostPercentage();
+        UpdateSeries();
+    }
+
+    partial void OnAlertCountChanged(int value)
+    {
+        UpdateAlertLineHostPercentage();
+        UpdateSeries();
+    }
+    
+    private void UpdateOnLineHostPercentage()
+    { 
+        OnLineHostPercentage = OnlineHosts / (double)TotalHosts * 100;
+    }
+    
+    private void UpdateOffLineHostPercentage()
+    {
+        OffLineHostPercentage = OfflineHosts / (double)TotalHosts * 100;
+    }
+    
+    private void UpdateAlertLineHostPercentage()
+    {
+        AlertLineHostPercentage = AlertCount / (double)TotalHosts * 100;
+    }
+    
     private void UpdateSeries()
     {
         SeriesCollection.Clear();
@@ -29,6 +58,7 @@ public partial class HomepagePanelViewModel
                 Values = [1],
                 Name = "No Data",
                 Fill = new SolidColorPaint(new SKColor(220, 220, 220)),
+                Stroke = new SolidColorPaint(SKColors.White, 2),
                 IsVisible = true
             });
         }
@@ -41,6 +71,7 @@ public partial class HomepagePanelViewModel
                     Values = [OnlineHosts],
                     Name = OnLine,
                     Fill = new SolidColorPaint(new SKColor(0, 166, 81)),
+                    Stroke = new SolidColorPaint(SKColors.White, 2),
                     DataLabelsPosition = PolarLabelsPosition.Outer,
                     IsHoverable = true,
                     IsVisible = OnlineHosts > 0
@@ -51,6 +82,7 @@ public partial class HomepagePanelViewModel
                     Values = [OfflineHosts],
                     Name = OffLine,
                     Fill = new SolidColorPaint(new SKColor(154, 23, 31)),
+                    Stroke = new SolidColorPaint(SKColors.White, 2),
                     DataLabelsPosition = PolarLabelsPosition.Outer,
                     IsHoverable = true,
                     IsVisible = OfflineHosts > 0
@@ -61,6 +93,7 @@ public partial class HomepagePanelViewModel
                     Values = [AlertCount],
                     Name = AlertLine,
                     Fill = new SolidColorPaint(new SKColor(251, 251, 199)),
+                    Stroke = new SolidColorPaint(SKColors.White, 2),
                     DataLabelsPosition = PolarLabelsPosition.Outer,
                     IsHoverable = true,
                     IsVisible = AlertCount > 0

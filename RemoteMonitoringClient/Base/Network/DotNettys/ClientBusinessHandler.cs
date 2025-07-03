@@ -26,7 +26,7 @@ using RemoteMonitoringClient.Views;
 
 namespace RemoteMonitoringClient.Base.Network.DotNettys;
 
-[AsType(LifetimeEnum.SingleInstance)]
+[AsType(LifetimeEnum.Transient)]
 public partial class ClientBusinessHandler(IMediator mediator) : SimpleChannelInboundHandler<NetworkVerify>
 {
     private Power? _power = Power.Off;

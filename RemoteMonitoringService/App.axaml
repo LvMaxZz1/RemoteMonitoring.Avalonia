@@ -3,6 +3,7 @@
              x:Class="RemoteMonitoringService.App"
              xmlns:semi="https://irihi.tech/semi"
              xmlns:u-Semi="https://irihi.tech/ursa/themes/semi"
+             xmlns:sukiUi="clr-namespace:SukiUI;assembly=SukiUI"
              xmlns:remoteMonitoringService="clr-namespace:RemoteMonitoringService"
              RequestedThemeVariant="Default">
              <!-- "Default" ThemeVariant follows system theme variant. "Dark" or "Light" are other available options. -->
@@ -15,6 +16,7 @@
         <semi:SemiTheme />
         <semi:DockSemiTheme />
         <u-Semi:SemiTheme />
+        <sukiUi:SukiTheme Locale="zh-CN" ThemeColor="Blue"  />
         <StyleInclude Source="avares://Semi.Avalonia.ColorPicker/Index.axaml" />
         <StyleInclude Source="avares://Semi.Avalonia.DataGrid/Index.axaml" />
         <StyleInclude Source="avares://Semi.Avalonia.TreeDataGrid/Index.axaml" />

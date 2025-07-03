@@ -1,18 +1,20 @@
-﻿<Window xmlns="https://github.com/avaloniaui"
-        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:u="https://irihi.tech/ursa"
-        xmlns:components="clr-namespace:RemoteMonitoringService.ViewModels.SupervisorySingle.Components"
-        mc:Ignorable="d" d:DesignWidth="545" d:DesignHeight="480"
-        Width="545" Height="480"
-        x:Class="RemoteMonitoringService.Views.SupervisoryNoManaged.ChildWindow.AddHostPanel"
-        Title="添加主机" 
-        x:DataType="components:AddHostPanelViewModel"
-        CanResize="False"
-        WindowState="Normal"
-        ExtendClientAreaToDecorationsHint="True"
-        ExtendClientAreaChromeHints="NoChrome">
+﻿<suki:SukiWindow xmlns="https://github.com/avaloniaui"
+            xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+            xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+            xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+            xmlns:u="https://irihi.tech/ursa"
+            xmlns:components="clr-namespace:RemoteMonitoringService.ViewModels.SupervisorySingle.Components"
+            xmlns:suki="https://github.com/kikipoulet/SukiUI"
+            mc:Ignorable="d" d:DesignWidth="545" d:DesignHeight="480"
+            Width="545" Height="480"
+            x:Class="RemoteMonitoringService.Views.SupervisoryNoManaged.ChildWindow.AddHostPanel"
+            Title="添加主机" 
+            x:DataType="components:AddHostPanelViewModel"
+            CanResize="False"
+            CanMaximize="False"
+            WindowState="Normal"
+            ExtendClientAreaToDecorationsHint="True"
+            ExtendClientAreaChromeHints="NoChrome">
     <Border Background="White" CornerRadius="16" Padding="32" Margin="24">
         <StackPanel>
             <!-- 标题 -->
@@ -69,4 +71,4 @@
             </StackPanel>
         </StackPanel>
     </Border>
-</Window>
+</suki:SukiWindow>

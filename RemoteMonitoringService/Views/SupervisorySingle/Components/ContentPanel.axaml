@@ -7,6 +7,7 @@
              x:Class="RemoteMonitoringService.Views.SupervisorySingle.Components.ContentPanel"
              x:DataType="components:ContentPanelViewModel"
              xmlns:consoles="clr-namespace:RemoteMonitoringService.Views.SupervisorySingle.Components"
+             xmlns:u="https://irihi.tech/ursa"
              Background="#F5F6FA">
     
     <Border Margin="20"
@@ -21,12 +22,16 @@
                                   Width="16" Height="16" Margin="5,0,0,0" Foreground="#666"/>
                     </TextBox.InnerLeftContent>
                 </TextBox>
-                <Button Content="添加主机" 
-                        Background="#F3F4F6" Foreground="#374151" CornerRadius="6" Height="35" Padding="15,0"
-                        Click="AddHostsClick"/>
-                <Button Content="删除选中" 
-                        Background="#F3F4F6" Foreground="#374151" CornerRadius="6" Height="35" Padding="15,0"
-                        Command="{Binding DeleteSelectHostCommand}"/>
+                <u:IconButton Content="添加主机" 
+                        Background="#4440d3" Foreground="White" 
+                        CornerRadius="6" Height="35" Padding="15,0"
+                        Click="AddHostsClick"
+                        Icon="{StaticResource SemiIconCopyAdd}"/>
+                <u:IconButton Content="删除选中" 
+                        Background="#de202c" Foreground="White"
+                        CornerRadius="6" Height="35" Padding="15,0"
+                        Command="{Binding DeleteSelectHostCommand}"
+                        Icon="{StaticResource SemiIconDelete}"/>
             </StackPanel>
 
             <DataGrid Grid.Row="1" Name="HostDataGrid" 
@@ -58,12 +63,12 @@
                     </Style>
                 </DataGrid.Styles>
                 <DataGrid.Columns>
-                    <DataGridTextColumn Header="主机名称"  Width="*" Binding="{Binding MachineName}"/>
-                    <DataGridTextColumn Header="IP地址"   Width="*" Binding="{Binding IP}"/>
-                    <DataGridTextColumn Header="上线时间"  Width="*" Binding="{Binding LoginTime}"/>
-                    <DataGridTextColumn Header="地址"     Width="*" Binding="{Binding Address}"/>
-                    <DataGridTextColumn Header="系统版本"  Width="*" Binding="{Binding OsVersion}"/>
-                    <DataGridTextColumn Header="机器类型"  Width="*" Binding="{Binding MachineType}"/>
+                    <DataGridTextColumn Header="主机名称" FontSize="12"  Width="*" Binding="{Binding MachineName}"/>
+                    <DataGridTextColumn Header="IP地址"  FontSize="12"   Width="*" Binding="{Binding IP}"/>
+                    <DataGridTextColumn Header="上线时间"  FontSize="12"  Width="*" Binding="{Binding LoginTime}"/>
+                    <DataGridTextColumn Header="地址"    FontSize="12"   Width="*" Binding="{Binding Address}"/>
+                    <DataGridTextColumn Header="系统版本" FontSize="12"  Width="*" Binding="{Binding OsVersion}"/>
+                    <DataGridTextColumn Header="机器类型" FontSize="12"  Width="*" Binding="{Binding MachineType}"/>
                 </DataGrid.Columns>
             </DataGrid>
             

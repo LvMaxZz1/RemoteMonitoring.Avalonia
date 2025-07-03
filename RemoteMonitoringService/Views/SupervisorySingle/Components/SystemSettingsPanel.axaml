@@ -22,13 +22,13 @@
                            VerticalAlignment="Center"/>
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Spacing="16" Grid.Column="1">
                     <u:IconButton Name="CancelIconButton" Content="取消"
-                            Width="90" Height="36"
                             Classes="Tertiary"
                             Command="{Binding CancelModifyCommand}"/>
                     <u:IconButton Name="SaveIconButton" Content="保存更改"
-                                  Width="90" Height="36"
-                                  Classes="Success" IsLoading="{Binding SaveLoding}"
-                                  Command="{Binding SaveModifyCommand}"/>
+                                  Background="#ff008242" Foreground="#FFFFFFFF"
+                                  IsLoading="{Binding SaveLoding}"
+                                  Command="{Binding SaveModifyCommand}"
+                                  Icon="{StaticResource SemiIconSave}"/>
                 </StackPanel>
             </Grid>
             <Border Background="#FAFAFB"
@@ -89,24 +89,68 @@
                        Margin="40,0,0,10"/>
             <Border Background="#FAFAFB"
                     CornerRadius="14"
-                    Margin="20,0,20,20"
-                    Padding="32,24">
+                    Margin="20,-5,20,20"
+                    Padding="32,24"
+                    Height="200" Width="800">
                 <StackPanel>
-                    <Grid RowDefinitions="Auto,Auto,Auto" ColumnDefinitions="*,Auto">
-                        <!-- 邮件通知 -->
-                        <TextBlock Grid.Row="0" Grid.Column="0" Text="邮件通知" FontWeight="SemiBold" FontSize="15" Foreground="#222"/>
-                        <ToggleSwitch Grid.Row="0" Grid.Column="1" IsChecked="{Binding EmailNotify}" Width="48" Height="24"/>
-                        <TextBlock Grid.Row="0" Grid.Column="0" Margin="0,22,0,0" Text="接收系统重要通知的邮件提醒" FontSize="13" Foreground="#888"/>
-                        
-                        <!-- 短信通知 -->
-                        <TextBlock Grid.Row="1" Grid.Column="0" Text="短信通知" FontWeight="SemiBold" FontSize="15" Foreground="#222"/>
-                        <ToggleSwitch Grid.Row="1" Grid.Column="1" IsChecked="{Binding SmsNotify}" Width="48" Height="24"/>
-                        <TextBlock Grid.Row="1" Grid.Column="0" Margin="0,22,0,0" Text="接收系统异常事件的短信提醒" FontSize="13" Foreground="#888"/>
-                        
-                        <!-- 浏览器通知 -->
-                        <TextBlock Grid.Row="2" Grid.Column="0" Text="浏览器通知" FontWeight="SemiBold" FontSize="15" Foreground="#222"/>
-                        <ToggleSwitch Grid.Row="2" Grid.Column="1" IsChecked="{Binding BrowserNotify}" Width="48" Height="24"/>
-                        <TextBlock Grid.Row="2" Grid.Column="0" Margin="0,22,0,0" Text="接收实时系统消息推送" FontSize="13" Foreground="#888"/>
+                    <Grid RowDefinitions="Auto,Auto,Auto">
+                        <Grid Margin="0,0,0,0">
+                            <ToggleSwitch HorizontalAlignment="Right"
+                                          VerticalAlignment="Top"
+                                          Classes="Switch"
+                                          IsChecked="{Binding EmailNotify}" />
+                            <TextBlock HorizontalAlignment="Left"
+                                       VerticalAlignment="Top"
+                                       FontWeight="DemiBold"
+                                       Text="邮件通知" />
+
+                            <TextBlock Width="300"
+                                       Margin="0,22,0,0"
+                                       HorizontalAlignment="Left"
+                                       VerticalAlignment="Bottom"
+                                       FontSize="13"
+                                       Foreground="{DynamicResource SukiLowText}"
+                                       Text="接收系统重要通知的邮件提醒."
+                                       TextWrapping="Wrap" />
+                        </Grid>
+                        <Grid Grid.Row="1" Margin="0,20,0,0">
+                            <ToggleSwitch HorizontalAlignment="Right"
+                                          VerticalAlignment="Top"
+                                          Classes="Switch"
+                                          IsChecked="{Binding SmsNotify}" />
+                            <TextBlock HorizontalAlignment="Left"
+                                       VerticalAlignment="Top"
+                                       FontWeight="DemiBold"
+                                       Text="短信通知" />
+
+                            <TextBlock Width="300"
+                                       Margin="0,22,0,0"
+                                       HorizontalAlignment="Left"
+                                       VerticalAlignment="Bottom"
+                                       FontSize="13"
+                                       Foreground="{DynamicResource SukiLowText}"
+                                       Text="接收系统异常事件的短信提醒."
+                                       TextWrapping="Wrap" />
+                        </Grid>
+                        <Grid Grid.Row="2" Margin="0,20,0,0">
+                            <ToggleSwitch HorizontalAlignment="Right"
+                                          VerticalAlignment="Top"
+                                          Classes="Switch"
+                                          IsChecked="{Binding BrowserNotify}" />
+                            <TextBlock HorizontalAlignment="Left"
+                                       VerticalAlignment="Top"
+                                       FontWeight="DemiBold"
+                                       Text="浏览器通知" />
+
+                            <TextBlock Width="300"
+                                       Margin="0,22,0,0"
+                                       HorizontalAlignment="Left"
+                                       VerticalAlignment="Bottom"
+                                       FontSize="13"
+                                       Foreground="{DynamicResource SukiLowText}"
+                                       Text="接收实时系统消息推送."
+                                       TextWrapping="Wrap" />
+                        </Grid>
                     </Grid>
                 </StackPanel>
             </Border>
@@ -116,10 +160,10 @@
                        FontSize="18"
                        FontWeight="Bold"
                        Foreground="#D93025"
-                       Margin="40,20,0,10"/>
+                       Margin="40,-20,0,10"/>
             <Border Background="#FAFAFB"
                     CornerRadius="14"
-                    Margin="20,0,20,20"
+                    Margin="20,-20,20,20"
                     Padding="32,24">
                 <StackPanel>
                     <Grid RowDefinitions="Auto" ColumnDefinitions="*,Auto">

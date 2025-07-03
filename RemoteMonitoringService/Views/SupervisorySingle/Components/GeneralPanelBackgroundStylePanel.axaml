@@ -2,11 +2,10 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-             mc:Ignorable="d" d:DesignWidth="966" d:DesignHeight="600"
-             Width="160" Height="600" Margin="0, 15 ,0 ,0"
-             x:Class="RemoteMonitoringService.Views.SupervisorySingle.Components.LeftPanelBackgroundStylePanel">
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             x:Class="RemoteMonitoringService.Views.SupervisorySingle.Components.GeneralPanelBackgroundStylePanel">
     <Canvas x:Name="RootCanvas">
-        <Path x:Name="WavePath"
-              Fill="#ff1a2741"/>
+        <Ellipse x:Name="EllipsePath"
+              Fill="#202836"/>
     </Canvas>
 </UserControl>

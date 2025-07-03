@@ -25,4 +25,9 @@ public partial class SystemSettingsPanelViewModel
         await FileSecureStorage.SaveSystemSettingsAsync(SystemSetting);
         await Task.CompletedTask;
     }
+
+    private bool CanSaveModifyCommand()
+    {
+        return !string.IsNullOrWhiteSpace(AdminName) && !string.IsNullOrWhiteSpace(AdminEmail) && !string.IsNullOrWhiteSpace(AdminPhone);
+    }
 }
