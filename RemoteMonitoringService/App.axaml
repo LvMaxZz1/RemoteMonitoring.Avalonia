@@ -16,7 +16,7 @@
         <semi:SemiTheme />
         <semi:DockSemiTheme />
         <u-Semi:SemiTheme />
-        <sukiUi:SukiTheme Locale="zh-CN" ThemeColor="Blue"  />
+        <sukiUi:SukiTheme Locale="zh-CN" ThemeColor="Blue"/>
         <StyleInclude Source="avares://Semi.Avalonia.ColorPicker/Index.axaml" />
         <StyleInclude Source="avares://Semi.Avalonia.DataGrid/Index.axaml" />
         <StyleInclude Source="avares://Semi.Avalonia.TreeDataGrid/Index.axaml" />
