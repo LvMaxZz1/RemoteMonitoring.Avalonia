@@ -12,7 +12,7 @@ PS：当前Demo并没有配置Api服务端，如果需要与部署的Web端进�
 - 😊 **高性能网络通信** - 基于DotNetty实现高并发，低延迟的主机通信
 
 ## 技术栈
-- 前端 UI：Avalonia（XAML + MVVM）
+- 前端 UI：Avalonia（XAML + MVVM）、Semi、Ursa、SukiUi等现代化控件库
 - 后端服务：C# (.NET 8)
 - AI 数据分析：DeepSeek AI（RESTful，Refit 强类型封装）
 - 网络通信：DotNetty

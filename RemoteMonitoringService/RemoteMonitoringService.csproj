@@ -59,7 +59,7 @@
         <DependentUpon>LeftPanelViewModel.cs</DependentUpon>
       </Compile>
       <Compile Update="ViewModels\SupervisorySingle\Components\MachineActivityModel.cs">
-        <DependentUpon>LeftPanelViewModel.cs</DependentUpon>
+        <DependentUpon>HomepagePanelViewModel.cs</DependentUpon>
       </Compile>
       <Compile Update="ViewModels\SupervisorySingle\Components\NavigationPanelViewModel.PrivateAction.cs">
         <DependentUpon>NavigationPanelViewModel.cs</DependentUpon>

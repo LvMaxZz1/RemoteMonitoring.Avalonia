@@ -6,7 +6,6 @@
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
              x:Class="RemoteMonitoringService.Views.SupervisorySingle.Components.ContentPanel"
              x:DataType="components:ContentPanelViewModel"
-             xmlns:consoles="clr-namespace:RemoteMonitoringService.Views.SupervisorySingle.Components"
              xmlns:u="https://irihi.tech/ursa"
              Background="#F5F6FA">
     
