@@ -2,7 +2,10 @@
 using System.ComponentModel;
 using System.Threading.Tasks;
 using CommunityToolkit.Mvvm.Input;
+using RemoteMonitoring.Core.Base;
 using RemoteMonitoring.Core.Services.Networks.Base.Enums;
+using RemoteMonitoring.Core.Utils;
+using RemoteMonitoringConsole.Base.MessageBusModels;
 
 namespace RemoteMonitoringConsole.ViewModels.SupervisorySingle.Components;
 
@@ -20,6 +23,10 @@ public partial class RemoteTerminalPanelViewModel
         TerminalOutput += $"> {TerminalInput}\n";
         if (!string.IsNullOrWhiteSpace(TerminalInput))
         {
+            MessageBusUtil.SendMessage(new TerminalCommandInputBusModel
+            {
+                Input = TerminalInput
+            }, MessageBusContract.MessageBusConsole);
             if (TerminalInput.Equals("cls", StringComparison.OrdinalIgnoreCase) || TerminalInput.Equals("clear", StringComparison.OrdinalIgnoreCase))
             {
                 TerminalOutput = $"> {TerminalInput}\n";

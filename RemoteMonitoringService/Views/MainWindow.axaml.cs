@@ -7,6 +7,7 @@ using Avalonia.Styling;
 using Avalonia.Threading;
 using RemoteMonitoring.Core.Base;
 using RemoteMonitoring.Core.DependencyInjection.Base;
+using RemoteMonitoring.Core.Utils;
 using RemoteMonitoringService.ViewModels;
 using SukiUI;
 
@@ -30,7 +31,7 @@ public partial class MainWindow : BaseWindow<MainWindowViewModel>
     protected override void OnClosed(EventArgs e)
     {
         ViewModel.OnClose();
-        Dispatcher.UIThread.InvokeAsync(() =>
+        UiThreadUtil.UiThreadInvoke(() =>
         {
             var windows = (Application.Current?.ApplicationLifetime as IClassicDesktopStyleApplicationLifetime)?
                 .Windows.ToList();

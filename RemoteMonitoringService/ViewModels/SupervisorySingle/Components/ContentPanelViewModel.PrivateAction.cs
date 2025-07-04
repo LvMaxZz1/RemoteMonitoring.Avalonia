@@ -1,7 +1,11 @@
 ﻿using System;
+using System.Collections.ObjectModel;
+using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Avalonia.Threading;
 using RemoteMonitoring.Core.Base;
+using RemoteMonitoring.Core.Models;
 using RemoteMonitoring.Core.Services.Networks.Base;
 using RemoteMonitoring.Core.Services.Networks.Base.Enums;
 using RemoteMonitoring.Core.Services.Networks.Base.Messages;
@@ -13,6 +17,46 @@ namespace RemoteMonitoringService.ViewModels.SupervisorySingle.Components;
 
 public partial class ContentPanelViewModel
 {
+    private void ManualAddHostInfo(AddHostInfoBusModel busModel)
+    {
+        UiThreadUtil.UiThreadInvoke(() =>
+        {
+            HostInfos.Add(new HostInfo
+            {
+                MachineName = busModel.MachineName,
+                IP = busModel.IP,
+                LoginTime = busModel.LoginTime,
+                MachineType = busModel.MachineType,
+                Address = busModel.Address,
+                OsVersion = busModel.OsVersion
+            });
+        });
+    }
+    
+    partial void OnSearchHostNameChanged(string? value)
+    {
+        RefreshFilter();
+    }
+
+    private void RefreshFilter()
+    {
+        FilterHostInfos.Clear();
+        if (!string.IsNullOrWhiteSpace(SearchHostName))
+        {
+            var filtered = HostInfos
+                .Where(h => h.MachineName.Contains(SearchHostName, StringComparison.OrdinalIgnoreCase)
+                            || h.IP.Contains(SearchHostName, StringComparison.OrdinalIgnoreCase)
+                            || h.Address.Contains(SearchHostName, StringComparison.OrdinalIgnoreCase)
+                            || h.MachineType.Contains(SearchHostName, StringComparison.OrdinalIgnoreCase))
+                .ToList();
+            FilterHostInfos.AddRange(filtered);
+        }
+        else
+        {
+            FilterHostInfos.AddRange(HostInfos);
+        }
+    }
+    
     private async Task DeleteSelectHostCommandAsync()
     {
         if (SelectedHostInfo != null)

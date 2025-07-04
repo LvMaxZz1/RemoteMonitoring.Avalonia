@@ -13,6 +13,7 @@ using Avalonia.Threading;
 using Avalonia.VisualTree;
 using RemoteMonitoring.Core.Base;
 using RemoteMonitoring.Core.DependencyInjection.Base;
+using RemoteMonitoring.Core.Utils;
 using RemoteMonitoringService.ViewModels.SupervisorySingle.Components;
 
 namespace RemoteMonitoringService.Views.SupervisorySingle.Components;
@@ -130,7 +131,7 @@ public partial class LeftPanel : BaseUserControl<LeftPanelViewModel>
                     var value = forward
                         ? from + (to - from) * t
                         : to - (to - from) * t;
-                    await Dispatcher.UIThread.InvokeAsync(() => tt.X = value);
+                    UiThreadUtil.UiThreadInvoke(() => tt.X = value);
                     await Task.Delay(16, token); // 约60fps
                 }
                 forward = !forward;
@@ -152,10 +153,10 @@ public partial class LeftPanel : BaseUserControl<LeftPanelViewModel>
                 var t = (double)i / backFrames;
                 // 线性插值
                 var value = start + (end - start) * t;
-                await Dispatcher.UIThread.InvokeAsync(() => tt.X = value);
+                UiThreadUtil.UiThreadInvoke(() => tt.X = value);
                 await Task.Delay(16, token);
             }
-            await Dispatcher.UIThread.InvokeAsync(() => tt.X = 0);
+            UiThreadUtil.UiThreadInvoke(() => tt.X = 0);
         }
     }
 }

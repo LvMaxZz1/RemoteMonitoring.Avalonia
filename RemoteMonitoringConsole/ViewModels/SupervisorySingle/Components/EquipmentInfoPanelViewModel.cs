@@ -1,10 +1,15 @@
-﻿using System.ComponentModel;
+﻿using System;
+using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.Timers;
 using CommunityToolkit.Mvvm.ComponentModel;
 using LibreHardwareMonitor.Hardware;
+using ReactiveUI;
 using RemoteMonitoring.Core.Base;
 using RemoteMonitoring.Core.Models;
 using RemoteMonitoring.Core.Services.Networks;
+using RemoteMonitoring.Core.Utils;
+using RemoteMonitoringConsole.Base.MessageBusModels;
 
 namespace RemoteMonitoringConsole.ViewModels.SupervisorySingle.Components;
 
@@ -59,6 +64,8 @@ public partial class EquipmentInfoPanelViewModel : ViewModelBase
     private Timer _hardwareTimer;
     
     #endregion
+    
+    public ObservableCollection<TerminalLog> TerminalLogs { get; } = [];
 
     public EquipmentInfoPanelViewModel(
         ISystemInfoService systemInfoService)
@@ -70,5 +77,13 @@ public partial class EquipmentInfoPanelViewModel : ViewModelBase
         _systemInfoService = systemInfoService;
         OperatingSystem = _systemInfoService.GetOsVersionStrAsync(new OSInfo()).Result;
         InitHardwareMonitor();
+        MessageBusUtil.ListenMessage<TerminalCommandInputBusModel>(RxApp.MainThreadScheduler, FillTerminalLog, MessageBusContract.MessageBusConsole);
     }
+}
+
+public class TerminalLog
+{
+    public string Input { get; set; }
+        
+    public DateTime Time { get; set; }
 }

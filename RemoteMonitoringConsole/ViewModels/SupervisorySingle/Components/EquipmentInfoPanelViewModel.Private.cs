@@ -1,6 +1,8 @@
-﻿using System.ComponentModel;
+﻿using System;
+using System.ComponentModel;
 using System.Timers;
 using LibreHardwareMonitor.Hardware;
+using RemoteMonitoringConsole.Base.MessageBusModels;
 
 namespace RemoteMonitoringConsole.ViewModels.SupervisorySingle.Components;
 
@@ -92,5 +94,14 @@ public partial class EquipmentInfoPanelViewModel
                     break;
             }
         }
+    }
+
+    private void FillTerminalLog(TerminalCommandInputBusModel inputBusModel)
+    {
+        TerminalLogs.Add(new TerminalLog
+        {
+            Input = "执行命令： "+inputBusModel.Input,
+            Time = DateTime.Now
+        });
     }
 }

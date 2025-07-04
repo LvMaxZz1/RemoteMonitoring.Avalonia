@@ -5,6 +5,7 @@ using System.Linq;
 using Avalonia.Threading;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
+using DynamicData;
 using ReactiveUI;
 using RemoteMonitoring.Core.Base;
 using RemoteMonitoring.Core.Models;
@@ -20,9 +21,15 @@ namespace RemoteMonitoringService.ViewModels.SupervisorySingle.Components;
 public partial class ContentPanelViewModel : ViewModelBase
 {
     #region observableProperty
+
+    private ObservableCollection<HostInfo> HostInfos { get; set; } = [];
+
+    public ObservableCollection<HostInfo> FilterHostInfos { get; private set; } = [];
     
-    public ObservableCollection<HostInfo> HostInfos { get; private set; }
-    
+
+    [ObservableProperty] 
+    private string? _searchHostName;
+
     [ObservableProperty]
     private HostInfo _selectedHostInfo;
 
@@ -41,8 +48,7 @@ public partial class ContentPanelViewModel : ViewModelBase
     {
         _systemInfoService = systemInfoService;
         _channelCloseSwitch = channelCloseSwitch;
-        HostInfos = [];
-
+        HostInfos.CollectionChanged += (s, e) => RefreshFilter();
         DeleteSelectHostCommand = new AsyncRelayCommand(DeleteSelectHostCommandAsync);
         
         MessageBusUtil.ListenMessage<AddHostInfoBusModel>(RxApp.MainThreadScheduler, ManualAddHostInfo, MessageBusContract.MessageBusService);
@@ -53,7 +59,7 @@ public partial class ContentPanelViewModel : ViewModelBase
     {
         try
         {
-            await Dispatcher.UIThread.InvokeAsync(async () =>
+            await UiThreadUtil.UiThreadInvokeAsync(async () =>
             {
                 if (HostInfos.Any(x => x.IP == clientLinkChannel.Channel.RemoteAddress.ToString()))
                     return;
@@ -88,7 +94,7 @@ public partial class ContentPanelViewModel : ViewModelBase
             if (clientLinkChannel == null)
                 return;
 
-            await Dispatcher.UIThread.InvokeAsync(() =>
+            UiThreadUtil.UiThreadInvoke(() =>
             {
                 var hostInfo = HostInfos.FirstOrDefault(x => x.IP == clientLinkChannel.Channel?.RemoteAddress.ToString());
                 if (hostInfo == null)
@@ -100,21 +106,5 @@ public partial class ContentPanelViewModel : ViewModelBase
         {
             // 错误处理
         }
-    }
-
-    private void ManualAddHostInfo(AddHostInfoBusModel busModel)
-    {
-        Dispatcher.UIThread.InvokeAsync(() =>
-        {
-            HostInfos.Add(new HostInfo
-            {
-                MachineName = busModel.MachineName,
-                IP = busModel.IP,
-                LoginTime = busModel.LoginTime,
-                MachineType = busModel.MachineType,
-                Address = busModel.Address,
-                OsVersion = busModel.OsVersion
-            });
-        });
     }
 }
