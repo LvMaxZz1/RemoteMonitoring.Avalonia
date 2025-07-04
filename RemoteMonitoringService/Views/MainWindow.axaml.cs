@@ -3,11 +3,12 @@ using System.Linq;
 using Avalonia;
 using Avalonia.Controls;
 using Avalonia.Controls.ApplicationLifetimes;
+using Avalonia.Styling;
 using Avalonia.Threading;
 using RemoteMonitoring.Core.Base;
 using RemoteMonitoring.Core.DependencyInjection.Base;
 using RemoteMonitoringService.ViewModels;
-using SukiUI.Enums;
+using SukiUI;
 
 namespace RemoteMonitoringService.Views;
 
@@ -18,6 +19,7 @@ public partial class MainWindow : BaseWindow<MainWindowViewModel>
     {
         InitializeComponent();
         SetWindowPosition();
+        SukiTheme.GetInstance().ChangeBaseTheme(ThemeVariant.Light);
     }
 
     private void SetWindowPosition()
