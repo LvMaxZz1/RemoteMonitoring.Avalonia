@@ -7,7 +7,7 @@ public class ClientNetworkSetting : IJsonFileSetting
 {
     public string JsonFilePath => "./Services/Networks/client-network-setting.json";
 
-    public string IpAddress { get; set; } = string.Empty;
+    public string HostAddress { get; set; } = string.Empty;
     
     public int Port { get; set; }
 

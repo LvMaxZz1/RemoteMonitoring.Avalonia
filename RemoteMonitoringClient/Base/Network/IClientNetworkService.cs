@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using System.Net;
 using System.Net.Sockets;
 using System.Threading.Tasks;
@@ -73,7 +74,9 @@ public class ClientNetworkService(IServiceProvider serviceProvider, ClientNetwor
                         .AddLast("encoder", packetHeaderEncoder)
                         .AddLast("clientBusinessHandler", clientBusinessHandler);
                 }));
-            var channel = await bootstrap.ConnectAsync(new IPEndPoint(IPAddress.Parse(clientNetworkSetting.IpAddress), clientNetworkSetting.Port));
+            var addresses = await Dns.GetHostAddressesAsync(clientNetworkSetting.HostAddress);
+            var ipv4 = addresses.First(a => a.AddressFamily == AddressFamily.InterNetwork);
+            var channel = await bootstrap.ConnectAsync(new IPEndPoint(ipv4, clientNetworkSetting.Port));
             ClientLinkChannel = new ClientLinkChannel(MachineLinkType.Client, channel);
         }
         catch (Exception e)

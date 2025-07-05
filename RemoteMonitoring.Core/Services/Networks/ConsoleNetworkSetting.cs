@@ -7,7 +7,7 @@ public class ConsoleNetworkSetting : IJsonFileSetting
 {
     public string JsonFilePath => "./Services/Networks/console-network-setting.json";
 
-    public string IpAddress { get; set; } = string.Empty;
+    public string HostAddress { get; set; } = string.Empty;
     
     public int Port { get; set; }
 

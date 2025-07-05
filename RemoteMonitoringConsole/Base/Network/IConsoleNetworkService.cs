@@ -1,6 +1,8 @@
 ﻿using System;
 using System.ComponentModel;
+using System.Linq;
 using System.Net;
+using System.Net.Sockets;
 using System.Text;
 using System.Threading.Tasks;
 using DotNetty.Buffers;
@@ -91,7 +93,9 @@ public class ConsoleNetworkService(IServiceProvider serviceProvider, ConsoleNetw
                         .AddLast("encoder", packetHeaderEncoder)
                         .AddLast("consoleBusiness", consoleBusinessHandler);
                 }));
-            var channel = await Bootstrap.ConnectAsync(new IPEndPoint(IPAddress.Parse(consoleNetworkSetting.IpAddress), consoleNetworkSetting.Port));
+            var addresses = await Dns.GetHostAddressesAsync(consoleNetworkSetting.HostAddress);
+            var ipv4 = addresses.First(a => a.AddressFamily == AddressFamily.InterNetwork);
+            var channel = await Bootstrap.ConnectAsync(new IPEndPoint(ipv4, consoleNetworkSetting.Port));
             ConsoleLinkChannel = new ClientLinkChannel(MachineLinkType.Console, channel);
         }
         catch
@@ -118,7 +122,7 @@ public class ConsoleNetworkService(IServiceProvider serviceProvider, ConsoleNetw
         {
             if (Bootstrap != null)
             {
-                var newChannel = await Bootstrap.ConnectAsync(new IPEndPoint(IPAddress.Parse(consoleNetworkSetting.IpAddress),
+                var newChannel = await Bootstrap.ConnectAsync(new IPEndPoint(IPAddress.Parse(consoleNetworkSetting.HostAddress),
                     consoleNetworkSetting.Port));
                 if (ConsoleLinkChannel?.Channel != null)
                 {

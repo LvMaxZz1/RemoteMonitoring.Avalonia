@@ -1,6 +1,6 @@
 ﻿{
   "ConsoleNetworkSetting": {
-    "IpAddress": "192.168.183.1",
+    "HostAddress": "192.168.183.1",
     "Port": 8080,
     "PreferDirect": false,
     "NHeapArena": 0,
