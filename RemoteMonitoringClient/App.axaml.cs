@@ -77,7 +77,6 @@ public partial class App : Application
         try
         {
             Process.Start(psi);
-            Environment.Exit(0);
         }
         catch (System.ComponentModel.Win32Exception)
         {
