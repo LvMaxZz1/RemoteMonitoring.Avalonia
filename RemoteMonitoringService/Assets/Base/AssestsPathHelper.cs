@@ -1,4 +1,5 @@
-﻿using System.IO;
+﻿using System;
+using System.IO;
 
 namespace RemoteMonitoringService.Assets.Base;
 
@@ -8,7 +9,7 @@ public class AssestsPathHelper
     private const string SecureStorage = nameof(SecureStorage);
     private const string Assets = nameof(Assets);
     
-    private static readonly string BasePath = Path.GetFullPath(Path.Combine(Directory.GetCurrentDirectory(), "..", "..", ".."));
+    private static readonly string BasePath = AppContext.BaseDirectory;
     
     public static readonly string AssetsPath = Path.Combine(BasePath, Assets);
     
